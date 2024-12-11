@@ -16,7 +16,7 @@ namespace AIDevHackathon.ConsoleApp.BasicNLtoSQL
             _config = new ConfigurationBuilder()
             .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
             .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}.json", optional: true)
-            .Build()
+            .Build();
 
             AOAIEndpoint = _config["Azure:AOAIEndpoint"];
             AOAIKey = _config["Azure:AOAIKey"];
