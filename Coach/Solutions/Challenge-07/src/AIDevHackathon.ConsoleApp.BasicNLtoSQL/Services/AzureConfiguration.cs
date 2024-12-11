@@ -12,21 +12,11 @@ namespace AIDevHackathon.ConsoleApp.BasicNLtoSQL
     {
         private IConfiguration _config = null;
         public AzureConfiguration()
-        {
-            var isDevelopment = string.Equals(Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"), "development", StringComparison.InvariantCultureIgnoreCase);
-
-            if (isDevelopment)
-            {
-                _config = new ConfigurationBuilder()
-                    .AddJsonFile("appsettings.Development.json", true, true)
-                    .Build();
-            }
-            else
-            {
-                _config = new ConfigurationBuilder()
-                    .AddJsonFile("appsettings.json", true, true)
-                    .Build();
-            }
+        {                
+            _config = new ConfigurationBuilder()
+            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+            .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}.json", optional: true)
+            .Build()
 
             AOAIEndpoint = _config["Azure:AOAIEndpoint"];
             AOAIKey = _config["Azure:AOAIKey"];
