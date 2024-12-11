@@ -23,6 +23,7 @@ Upon completing the workshop, participants will be able to:
 - Access to Azure OpenAI in the desired Azure subscription.
 - Latest version of Azure CLI
 - Latest version of Visual Studio or Visual Studio Code
+- .NET 8.0 SDK or later version
 
 ## Target Audience
 The intended audience are individuals with coding skills.
