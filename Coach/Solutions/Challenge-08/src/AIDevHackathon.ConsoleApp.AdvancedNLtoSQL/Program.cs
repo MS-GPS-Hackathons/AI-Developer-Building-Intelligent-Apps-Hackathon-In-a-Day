@@ -1,4 +1,5 @@
-﻿using Microsoft.SemanticKernel;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.ChatCompletion;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
 using Newtonsoft.Json;
@@ -15,7 +16,8 @@ namespace SK.NLtoSQL
         static async Task Main(string[] args)
         {
             try
-            {
+            {               
+
                 //Initialize confguration from appsettings.json
                 var azureConfig = new AzureConfiguration();
 
@@ -23,7 +25,11 @@ namespace SK.NLtoSQL
                 var builder = Kernel.CreateBuilder() 
                                     .AddAzureOpenAIChatCompletion(azureConfig.AOAIDeploymentId, azureConfig.AOAIEndpoint, azureConfig.AOAIKey);
 
+                //Initialize the database service
+                DatabaseService dbService = new DatabaseService(azureConfig.SQLHostname, azureConfig.SQLUsername, azureConfig.SQLPassword, azureConfig.SQLDatabase);
+
                 //Add the SQLSchemaInfo plugin
+                builder.Services.AddSingleton<DatabaseService>(dbService);
                 builder.Plugins.AddFromType<SQLSchemaInfo>();
                 Kernel kernel = builder.Build();
 
@@ -49,9 +55,7 @@ namespace SK.NLtoSQL
                             // Remove the tool messages from the chat history
                             chatMessages = new ChatHistory(chatMessages.Where(t=>t.Role!= AuthorRole.Tool && t.Metadata==null).ToList());
                           
-                        }
-
-                        
+                        }                        
 
                         // Get user input
                         System.Console.Write("User > ");

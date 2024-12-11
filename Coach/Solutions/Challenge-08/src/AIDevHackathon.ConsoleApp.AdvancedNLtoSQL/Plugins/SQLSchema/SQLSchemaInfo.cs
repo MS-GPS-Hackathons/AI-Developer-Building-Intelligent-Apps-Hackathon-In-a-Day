@@ -13,12 +13,13 @@ namespace SK.NLtoSQL.Plugins.SQLSchema
     /// <summary>
     /// Provides information about the SQL schema.
     /// </summary>
-    public sealed class SQLSchemaInfo
+    public class SQLSchemaInfo
     {
-        AzureConfiguration azureConfig = new AzureConfiguration();
-
-        //Initialize the database service
-        DatabaseService dbService = new DatabaseService("ai-dev-hackathon-nl-to-sql-sqlserver.database.windows.net", "sqladmin", "P@ssw0rd1234", "AdventureWorks");
+        private DatabaseService _dbService  = null;
+        public SQLSchemaInfo(DatabaseService dbService)
+        {
+            _dbService = dbService;
+        }
 
         /// <summary>
         /// Get the database information.
@@ -27,7 +28,7 @@ namespace SK.NLtoSQL.Plugins.SQLSchema
         [KernelFunction, Description("Get the Database description ")]
         public List<DbInfo> GetDatabaseInfo()
         {
-            var info = dbService.GetDbInfo();
+            var info = _dbService.GetDbInfo();
             return info;
         }
 
@@ -38,7 +39,7 @@ namespace SK.NLtoSQL.Plugins.SQLSchema
         [KernelFunction, Description("Get the Database schemas with their descriptions ")]
         public List<SchemaInfo> GetDatabaseSchemaInfo()
         {
-            var info = dbService.GetSchemaInfo();
+            var info = _dbService.GetSchemaInfo();
             return info;
         }
 
@@ -50,7 +51,7 @@ namespace SK.NLtoSQL.Plugins.SQLSchema
         [KernelFunction, Description("Get the Database tables with their descriptions for specific schema")]
         public List<TableInfo> GetDatabaseSchemaTableInfo([Description("The schema name")] string schemaName)
         {
-            var info = dbService.GetTableSchemaInfo(schemaName);
+            var info = _dbService.GetTableSchemaInfo(schemaName);
             return info;
         }
 
@@ -68,7 +69,7 @@ namespace SK.NLtoSQL.Plugins.SQLSchema
             [Description("The table name")] string tableName
             )
         {
-            var info = dbService.GetColumnSchemaInfo(schemaName, tableName);
+            var info = _dbService.GetColumnSchemaInfo(schemaName, tableName);
             return info;
         }
 
@@ -79,7 +80,7 @@ namespace SK.NLtoSQL.Plugins.SQLSchema
            [Description("Sql command")] string sqlCommand
            )
         {
-            var info = dbService.ExecuteSqlCommand(sqlCommand);
+            var info = _dbService.ExecuteSqlCommand(sqlCommand);
             return info;
         }
     }

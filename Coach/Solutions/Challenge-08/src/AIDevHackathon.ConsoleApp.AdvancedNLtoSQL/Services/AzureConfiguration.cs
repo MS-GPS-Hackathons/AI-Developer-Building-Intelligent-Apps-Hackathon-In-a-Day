@@ -8,46 +8,33 @@ using System.Threading.Tasks;
 namespace SK.NLtoSQL.Services
 {
     // This class is used to read the configuration from the appsettings.json file
-    internal class AzureConfiguration
+    public class AzureConfiguration
     {
         private IConfiguration _config = null;
         public AzureConfiguration()
         {
-                
+
             _config = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}.json", optional: true)
-                .Build()
+                .Build();
 
             AOAIEndpoint = _config["Azure:AOAIEndpoint"];
             AOAIKey = _config["Azure:AOAIKey"];
             AOAIDeploymentId = _config["Azure:AOAIDeploymentId"];
-            AOAIEndpointGPT4 = _config["Azure:AOAIEndpointGPT4"];
-            AOAIKeyGPT4 = _config["Azure:AOAIKeyGPT4"];
-            AOAIDeploymentIdGPT4 = _config["Azure:AOAIDeploymentIdGPT4"];
-            SearchEndpoint = _config["Azure:SearchEndpoint"];
-            SearchKey = _config["Azure:SearchKey"];
-            SearchIndexProducts = _config["Azure:SearchIndexProducts"];
-            SearchIndexSupport = _config["Azure:SearchIndexSupport"];
-            SearchIndexSupportVector = _config["Azure:SearchIndexSupportVector"];
-            SearchSemanticConfiguration = _config["Azure:SearchSemanticConfiguration"];
-            AOAIEmbeddingsEndpointGPT4 = _config["Azure:AOAIEmbeddingsEndpointGPT4"];
+            SQLHostname = _config["Azure:SQLHostname"];
+            SQLUsername = _config["Azure:SQLUsername"];
+            SQLPassword = _config["Azure:SQLPassword"];
+            SQLDatabase = _config["Azure:SQLDatabase"];
         }
         public string AOAIEndpoint { get; set; }
         public string AOAIKey { get; set; }
         public string AOAIDeploymentId { get; set; }
 
-        public string AOAIEndpointGPT4 { get; set; }
-        public string AOAIKeyGPT4 { get; set; }
-        public string AOAIDeploymentIdGPT4 { get; set; }
-        public string SearchEndpoint { get; set; }
-        public string SearchKey { get; set; }
-        public string SearchIndexProducts { get; set; }
-        public string SearchIndexSupport { get; set; }
-        public string SearchIndexSupportVector { get; set; }
-        public string SearchSemanticConfiguration { get; set; }
+        public string SQLHostname { get; set; }
 
-        public string AOAIEmbeddingsEndpointGPT4 { get; set; }
-
+        public string SQLUsername { get; set; }
+        public string SQLPassword { get; set; }
+        public string SQLDatabase { get; set; }
     }
-}
+ }
