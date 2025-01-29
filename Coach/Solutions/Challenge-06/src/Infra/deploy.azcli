@@ -20,3 +20,5 @@ az cosmosdb sql database create --account-name $cosmosDbAccountName --resource-g
 az cosmosdb sql container create --account-name $cosmosDbAccountName --resource-group $resourceGroup --database-name $cosmosDbDatabaseName --name $cosmosDbContainer --partition-key-path /id
 
 az cosmosdb update --resource-group $resourceGroup --name $cosmosDbAccountName  --capabilities EnableNoSQLVectorSearch
+
+az cosmosdb update --resource-group $resourceGroup --name $cosmosDbAccountName
