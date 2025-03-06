@@ -10,16 +10,16 @@ using Azure.Search.Documents;
 using Azure.Search.Documents.Indexes;
 
 #pragma warning disable SKEXP0010
-AzureConfiguration config = new AzureConfiguration();
+var config = new AzureConfiguration();
 
-string aoaiModelId = config.AOAIDeploymentId;
-string aoaiEndpoint = config.AOAIEndpoint;
-string aoaiApiKey = config.AOAIKey;
-string aoaiEmbeddingsEndpoint = config.AOAIEmbeddingsEndpoint;
-string aoaiEmbeddingsDeploymentId = config.AOAIEmbeddingsDeploymentId;
-string searchEndpoint = config.SearchEndpoint;
-string searchKey = config.SearchKey;
-string searchIndexProducts = config.SearchIndexProducts;
+var aoaiModelId = config.AOAIDeploymentId;
+var aoaiEndpoint = config.AOAIEndpoint;
+var aoaiApiKey = config.AOAIKey;
+var aoaiEmbeddingsEndpoint = config.AOAIEmbeddingsEndpoint;
+var aoaiEmbeddingsDeploymentId = config.AOAIEmbeddingsDeploymentId;
+var searchEndpoint = config.SearchEndpoint;
+var searchKey = config.SearchKey;
+var searchIndexProducts = config.SearchIndexProducts;
 
 // Create kernel
 var builder = Kernel.CreateBuilder();
@@ -36,7 +36,7 @@ builder.AddAzureOpenAITextEmbeddingGeneration(
 
 builder.Services.AddLogging(services => services.AddConsole().SetMinimumLevel(LogLevel.Trace));
 
-Kernel kernel = builder.Build();
+var kernel = builder.Build();
 
 // Retrieve the chat completion service
 var chatCompletionService = kernel.Services.GetRequiredService<IChatCompletionService>();
@@ -45,10 +45,10 @@ var chatCompletionService = kernel.Services.GetRequiredService<IChatCompletionSe
 kernel.Plugins.AddFromType<LightsPlugin>("Lights");
 
 //Add Product Info Plugin
-SearchIndexClient searchClient = new SearchIndexClient(new Uri(searchEndpoint), new Azure.AzureKeyCredential(searchKey));
+var searchClient = new SearchIndexClient(new Uri(searchEndpoint), new Azure.AzureKeyCredential(searchKey));
 var textEmbeddingService = kernel.Services.GetRequiredService<ITextEmbeddingGenerationService>();
 
-ProductInfoPlugin productInfoPlugin = new ProductInfoPlugin(textEmbeddingService, searchClient, searchIndexProducts);
+var productInfoPlugin = new ProductInfoPlugin(textEmbeddingService, searchClient, searchIndexProducts);
 
 kernel.Plugins.AddFromObject(productInfoPlugin);
 

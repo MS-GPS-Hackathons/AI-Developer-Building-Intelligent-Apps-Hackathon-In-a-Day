@@ -14,26 +14,26 @@ using static System.Environment;
 #pragma warning disable AOAI001
 
 //Read the configuration from the appsettings.json file
-AzureConfiguration config = new AzureConfiguration();
+var config = new AzureConfiguration();
 
 //Get the configuration values
-string endpoint = config.AOAIEndpoint;
-string deploymentName = config.AOAIDeploymentId;
-string openAiApiKey = config.AOAIKey;
+var endpoint = config.AOAIEndpoint;
+var deploymentName = config.AOAIDeploymentId;
+var openAiApiKey = config.AOAIKey;
 
-string searchEndpoint = config.SearchEndpoint;
-string searchIndex = config.SearchIndex; 
-string searchApiKey = config.SearchKey;
+var searchEndpoint = config.SearchEndpoint;
+var searchIndex = config.SearchIndex; 
+var searchApiKey = config.SearchKey;
 
 //Create an instance of the AzureOpenAIClient
 AzureOpenAIClient azureClient = new(
     new Uri(endpoint),
     new ApiKeyCredential(openAiApiKey));
-ChatClient chatClient = azureClient.GetChatClient(deploymentName);
+var chatClient = azureClient.GetChatClient(deploymentName);
 
 //Add chat completion options with data source 
-ChatCompletionOptions options = new ChatCompletionOptions();
-options.AddDataSource(new AzureSearchChatDataSource()
+var options = new ChatCompletionOptions();
+options.AddDataSource(new AzureSearchChatDataSource
 {
     Endpoint = new Uri(searchEndpoint),
     IndexName = searchIndex,
@@ -41,8 +41,10 @@ options.AddDataSource(new AzureSearchChatDataSource()
 });
 
 //Add system message and user question
-List<ChatMessage> messages = new List<ChatMessage>();
-messages.Add(ChatMessage.CreateSystemMessage("You are an AI assistant that helps people find product information."));
+List<ChatMessage> messages =
+[
+    ChatMessage.CreateSystemMessage("You are an AI assistant that helps people find product information.")
+];
 
 Console.WriteLine("Type your question here: ");
 
@@ -56,7 +58,7 @@ while (true)
     ChatCompletion completion = chatClient.CompleteChat(messages, options);
 
     //Display the response and add it to chat history
-    string response = completion.Content[0].Text;
+    var response = completion.Content[0].Text;
     ChatMessage.CreateAssistantMessage(response);
     Console.WriteLine($"System: {response}");
 }

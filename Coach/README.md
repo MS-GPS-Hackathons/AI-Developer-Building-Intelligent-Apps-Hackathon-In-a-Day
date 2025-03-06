@@ -22,6 +22,7 @@ This hack is designed to be run as 2-day event for 6 hours every day, for a tota
   - Challenge 8 (120 mins)
   - Challenge 9 (30 mins)
   - (Optional) Challenge 10 (180 mins)
+  - Challenge 11 (60 mins)
 
 ## Repository Contents
 

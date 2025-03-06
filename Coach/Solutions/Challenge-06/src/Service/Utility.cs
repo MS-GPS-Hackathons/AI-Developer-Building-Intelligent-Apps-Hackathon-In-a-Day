@@ -25,7 +25,7 @@ namespace AIDevHackathon.ConsoleApp.VectorDB.Recipes.Service
                     var jsonString = File.ReadAllText(f);
 
                     // Deserialize the JSON string to a Recipe object
-                    Recipe recipe = JsonConvert.DeserializeObject<Recipe>(jsonString);
+                    var recipe = JsonConvert.DeserializeObject<Recipe>(jsonString);
                     recipe.id = recipe.name.ToLower().Replace(" ", "");
                     ret.Add(recipe);
 

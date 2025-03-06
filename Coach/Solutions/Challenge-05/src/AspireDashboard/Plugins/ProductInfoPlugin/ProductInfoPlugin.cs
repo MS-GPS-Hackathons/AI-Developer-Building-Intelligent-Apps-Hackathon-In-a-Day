@@ -27,10 +27,10 @@ public class ProductInfoPlugin
     public async Task<string> SearchAsync(string query)
     {
         // Convert string query to vector
-        ReadOnlyMemory<float> embedding = await _textEmbeddingGenerationService.GenerateEmbeddingAsync(query);
+        var embedding = await _textEmbeddingGenerationService.GenerateEmbeddingAsync(query);
 
         // Get client for search operations
-        SearchClient searchClient = _indexClient.GetSearchClient(_indexName);
+        var searchClient = _indexClient.GetSearchClient(_indexName);
 
         // Configure request parameters
         VectorizedQuery vectorQuery = new(embedding);

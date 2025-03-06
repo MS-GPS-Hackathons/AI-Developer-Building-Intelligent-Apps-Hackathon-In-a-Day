@@ -29,7 +29,7 @@ namespace SK.NLtoSQL.Services
             this.userName = userName;
             this.password = password;
             this.dbName = dbName;
-            this.sqlConnectionStringBuilder = new SqlConnectionStringBuilder()
+            this.sqlConnectionStringBuilder = new SqlConnectionStringBuilder
             {
                 DataSource = dataSource,
                 UserID = userName,
@@ -47,11 +47,11 @@ namespace SK.NLtoSQL.Services
         {
             List<DbInfo> dbinfo = new List<DbInfo>();
 
-            using (SqlConnection connection = new SqlConnection(sqlConnectionStringBuilder.ConnectionString))
+            using (var connection = new SqlConnection(sqlConnectionStringBuilder.ConnectionString))
             {
                 connection.Open();
                 // Get database information sql query
-                String sql = @"SELECT 
+                var sql = @"SELECT 
                                 DISTINCT i_s.CATALOG_NAME as Db,
                                 [Description] = s.value 
                             FROM 
@@ -62,13 +62,13 @@ namespace SK.NLtoSQL.Services
                                 s.major_id = 0
                                 AND s.name = 'MS_Description'";
 
-                using (SqlCommand command = new SqlCommand(sql, connection))
+                using (var command = new SqlCommand(sql, connection))
                 {
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    using (var reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            dbinfo.Add(new DbInfo()
+                            dbinfo.Add(new DbInfo
                             {
                                 DbName = reader["Db"] as string,
                                 DbDescription = reader["Description"] as string
@@ -89,12 +89,12 @@ namespace SK.NLtoSQL.Services
 
             List<SchemaInfo> schemaInfo = new List<SchemaInfo>();
 
-            using (SqlConnection connection = new SqlConnection(sqlConnectionStringBuilder.ConnectionString))
+            using (var connection = new SqlConnection(sqlConnectionStringBuilder.ConnectionString))
             {
                 connection.Open();
 
                 // Get schema information sql query
-                String sql = @"(SELECT 
+                var sql = @"(SELECT 
                                 [Db] = i_s.CATALOG_NAME,
                                 [Schema] = i_s.SCHEMA_NAME, 
                                 [Description] = s.value 
@@ -119,13 +119,13 @@ namespace SK.NLtoSQL.Services
                                 AND s.name = 'MS_Description')
 	                            order by Db, [Schema]";
                 
-                using (SqlCommand command = new SqlCommand(sql, connection))
+                using (var command = new SqlCommand(sql, connection))
                 {
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    using (var reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            schemaInfo.Add(new SchemaInfo()
+                            schemaInfo.Add(new SchemaInfo
                             {
                                 DbName = reader["Db"] as string,
                                 SchemaName = reader["Schema"] as string,
@@ -148,12 +148,12 @@ namespace SK.NLtoSQL.Services
 
             List<TableInfo> schemaTableInfo = new List<TableInfo>();
 
-            using (SqlConnection connection = new SqlConnection(sqlConnectionStringBuilder.ConnectionString))
+            using (var connection = new SqlConnection(sqlConnectionStringBuilder.ConnectionString))
             {
                 connection.Open();
 
                 // Get table information sql query
-                String sql = $@"SELECT 
+                var sql = $@"SELECT 
 	                            [Db] = i_s.TABLE_CATALOG,
                                 [Schema] = i_s.TABLE_SCHEMA,
                                 [Table] = i_s.TABLE_NAME,
@@ -171,14 +171,14 @@ namespace SK.NLtoSQL.Services
                             ORDER BY 
                                 i_s.TABLE_NAME";
 
-                using (SqlCommand command = new SqlCommand(sql, connection))
+                using (var command = new SqlCommand(sql, connection))
                 {
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    using (var reader = command.ExecuteReader())
                     {
 
                         while (reader.Read())
                         {
-                            schemaTableInfo.Add(new TableInfo()
+                            schemaTableInfo.Add(new TableInfo
                             {
                                 DbName = reader["Db"] as string,
                                 SchemaName = reader["Schema"] as string,
@@ -208,12 +208,12 @@ namespace SK.NLtoSQL.Services
 
             List<ColumnsInfo> schemaColumnInfo = new List<ColumnsInfo>();
 
-            using (SqlConnection connection = new SqlConnection(sqlConnectionStringBuilder.ConnectionString))
+            using (var connection = new SqlConnection(sqlConnectionStringBuilder.ConnectionString))
             {
                 connection.Open();
 
                 // Get column information sql query
-                String sql = @"SELECT 
+                var sql = @"SELECT 
 	                            [Db] = i_s.TABLE_CATALOG,
                                 [Schema] = i_s.TABLE_SCHEMA,
                                 [Table] = i_s.TABLE_NAME, 
@@ -234,13 +234,13 @@ namespace SK.NLtoSQL.Services
                             ORDER BY 
                                 i_s.TABLE_NAME, i_s.ORDINAL_POSITION";
 
-                using (SqlCommand command = new SqlCommand(sql, connection))
+                using (var command = new SqlCommand(sql, connection))
                 {
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    using (var reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            schemaColumnInfo.Add(new ColumnsInfo()
+                            schemaColumnInfo.Add(new ColumnsInfo
                             {
                                 DbName = reader["Db"] as string,
                                 SchemaName = reader["Schema"] as string,
@@ -278,15 +278,15 @@ namespace SK.NLtoSQL.Services
 
             List<ColumnsInfo> schemaColumnInfo = new List<ColumnsInfo>();
 
-            using (SqlConnection connection = new SqlConnection(sqlConnectionStringBuilder.ConnectionString))
+            using (var connection = new SqlConnection(sqlConnectionStringBuilder.ConnectionString))
             {
                 connection.Open();
 
-                using (SqlCommand command = new SqlCommand(sqlCommand, connection))
+                using (var command = new SqlCommand(sqlCommand, connection))
                 {
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    using (var reader = command.ExecuteReader())
                     {
-                        DataTable dataTable = new DataTable();
+                        var dataTable = new DataTable();
                         dataTable.Load(reader);
                         return JsonConvert.SerializeObject(dataTable);
                     }

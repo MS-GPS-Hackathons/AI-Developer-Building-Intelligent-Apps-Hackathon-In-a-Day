@@ -51,7 +51,7 @@ public class OpenAIService
         _openAIMaxTokens = int.TryParse(maxTokens, out _openAIMaxTokens) ? _openAIMaxTokens : 8191;
 
         //Retry policy for OpenAI client
-        OpenAIClientOptions clientOptions = new OpenAIClientOptions()
+        var clientOptions = new OpenAIClientOptions
         {
             Retry =
         {
@@ -95,10 +95,10 @@ public class OpenAIService
             // Get embeddings
             var response = await _openAIClient.GetEmbeddingsAsync(embeddingsOptions);
 
-            Embeddings embeddings = response.Value;
+            var embeddings = response.Value;
 
             // Return embeddings as float array
-            float[] embedding = embeddings.Data[0].Embedding.ToArray();
+            var embedding = embeddings.Data[0].Embedding.ToArray();
 
             return embedding;
         }
@@ -146,7 +146,7 @@ public class OpenAIService
             // Get chat completions
             Azure.Response<ChatCompletions> completionsResponse = await _openAIClient.GetChatCompletionsAsync(options);
 
-            ChatCompletions completions = completionsResponse.Value;
+            var completions = completionsResponse.Value;
 
             // Return response, prompt tokens, and response tokens
             return (
@@ -159,7 +159,7 @@ public class OpenAIService
         catch (Exception ex)
         {
 
-            string message = $"OpenAIService.GetChatCompletionAsync(): {ex.Message}";
+            var message = $"OpenAIService.GetChatCompletionAsync(): {ex.Message}";
             Console.WriteLine(message);
             throw;
 
