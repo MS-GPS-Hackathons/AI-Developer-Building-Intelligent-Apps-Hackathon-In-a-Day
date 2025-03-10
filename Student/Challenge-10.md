@@ -1,4 +1,4 @@
-# Challenge 11 - Multiple Agents and execution strategies
+# Challenge 10 - Multiple Agents and execution strategies
 
 [< Previous Challenge](./Challenge-09.md) - **[Home](../README.md)** - [Next Challenge >](./Challenge-11.md)
 
