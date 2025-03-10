@@ -19,7 +19,7 @@ AnsiConsole.WriteLine("Current configuration:");
 AnsiConsole.MarkupLine($"[bold blue]ModelId:[/]{deploymentName}");
 AnsiConsole.MarkupLine($"[bold blue]Environment:[/]{apiKey}");
 
-var kernel = AgentHelpers.BuildKernel(deploymentName, apiKey, endpoint);
+var kernel = AgentHelpers.BuildKernel(deploymentName, endpoint, apiKey);
 var weatherAgent = AgentHelpers.BuildAgent(kernel, "WeatherAgent",
     "You are an agent designed to query and retrieve information about the weather of a given location. Keep it short and concise such as it's 20 celsious sunny, hot, cold, rainy or cloud with no description. For now, just make it up, you do not have to call any service. Do not tell anything other than the weather.");
 

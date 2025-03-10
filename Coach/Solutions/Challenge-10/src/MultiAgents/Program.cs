@@ -20,7 +20,7 @@ AnsiConsole.WriteLine("Current configuration:");
 AnsiConsole.MarkupLine($"[bold blue]ModelId:[/]{deploymentName}");
 AnsiConsole.MarkupLine($"[bold blue]Environment:[/]{apiKey}");
 
-var kernel = AgentHelpers.BuildKernel(deploymentName, apiKey, endpoint);
+var kernel = AgentHelpers.BuildKernel(deploymentName, endpoint, apiKey);
 var travelPlannerAgent = AgentHelpers.BuildTravelAgent(kernel);
 var budgetAdvisorAgent = AgentHelpers.BuildBudgetAdvisoryAgent(kernel);
 await AgentHelpers.ExecuteFlowAsync(travelPlannerAgent, budgetAdvisorAgent);

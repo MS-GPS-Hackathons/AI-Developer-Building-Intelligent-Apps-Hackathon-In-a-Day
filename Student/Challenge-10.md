@@ -44,7 +44,39 @@ To expedite the request team provided you with the following:
 - class [BudgetAdvisor](./Resources/Challenge-10/BudgetAdvisor.cs) -- Semantic Kernel Function which will help you to calculate the budget of the travel plan.
 - class [AgentHelpers](./Resources/Challenge-10/AgentHelpers.cs) -- helper function to create an agent for Travel and Budget with Semantic Kernel.
 
-Build a strategy to use the above agents to create a multi-agent system that can work together to achieve a common goal.
+Use below snippet in your code to create the agents and test input from user. 
+
+```csharp
+var deploymentName = "AZURE-OPENAI-DEPLOYMENTNAME";
+var apiKey = "AZURE-OPENAI-APIKEY";
+var endpoint = "AZURE-OPENAI-ENDPOINT";
+
+ArgumentException.ThrowIfNullOrEmpty(deploymentName);
+ArgumentException.ThrowIfNullOrEmpty(apiKey);
+ArgumentException.ThrowIfNullOrEmpty(endpoint);
+
+var kernel = AgentHelpers.BuildKernel(deploymentName, endpoint, apiKey);
+var travelPlannerAgent = AgentHelpers.BuildTravelAgent(kernel);
+var budgetAdvisorAgent = AgentHelpers.BuildBudgetAdvisoryAgent(kernel);
+ChatHistory chatHistory = [];
+await AgentHelpers.InvokeAgentWithInputFromUserAsync("I want to travel to Greece. Total estimate 2000 euros.", travelPlannerAgent, chatHistory);
+await AgentHelpers.InvokeAgentWithInputFromUserAsync("I want to travel to Greece and I have 1600 euros budget limit.", budgetAdvisorAgent, chatHistory);
+```
+
+You need to add strategy to call the agents in a way that they can work together to achieve the goal. 
+
+_Hint:_
+
+You can add nuget packages to help with your development:
+```
+<PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.0-preview.1.25080.5" />
+<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.0-preview.1.25080.5" />
+<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="10.0.0-preview.1.25080.5" />
+<PackageReference Include="Microsoft.SemanticKernel.Agents.AzureAI" Version="1.40.1-preview" />
+<PackageReference Include="Microsoft.SemanticKernel.Agents.Core" Version="1.40.1-preview" />
+<PackageReference Include="Microsoft.SemanticKernel.Agents.OpenAI" Version="1.40.1-preview" />
+<PackageReference Include="Microsoft.SemanticKernel.Connectors.AzureOpenAI" Version="1.40.1" />
+```
 
 ## Success Criteria
 

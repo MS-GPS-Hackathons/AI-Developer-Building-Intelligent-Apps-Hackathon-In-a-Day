@@ -47,7 +47,7 @@ namespace AIDevHackathon.ConsoleApp.BasicNLtoSQL
                 var chatMessages = new ChatHistory(systemPrompt);
 
                 //Load the database schema
-                var sqlSchema = File.ReadAllText("Data\\dbschema.txt");
+                var sqlSchema = await File.ReadAllTextAsync("D:\\Projects\\AI-Developer-Building-Intelligent-Apps-Hackathon\\Coach\\Solutions\\Challenge-07\\src\\BasicNLtoSQL\\Data");
 
                 // Start the conversation
                 while (true)

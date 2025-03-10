@@ -35,10 +35,10 @@ public class CosmosDbService
     /// </remarks>
     public CosmosDbService(string endpoint, string databaseName, string containerName, string key)
     {
-        ArgumentNullException.ThrowIfNullOrEmpty(endpoint);
-        ArgumentNullException.ThrowIfNullOrEmpty(key);
-        ArgumentNullException.ThrowIfNullOrEmpty(databaseName);
-        ArgumentNullException.ThrowIfNullOrEmpty(containerName);
+        ArgumentException.ThrowIfNullOrEmpty(endpoint);
+        ArgumentException.ThrowIfNullOrEmpty(key);
+        ArgumentException.ThrowIfNullOrEmpty(databaseName);
+        ArgumentException.ThrowIfNullOrEmpty(containerName);
 
 
         CosmosSerializationOptions options = new()
@@ -54,7 +54,6 @@ public class CosmosDbService
 
         _database = _client?.GetDatabase(databaseName);
         var container = _database?.GetContainer(containerName);
-
 
         _container = container ??
             throw new ArgumentException("Unable to connect to existing Azure Cosmos DB container or database.");
@@ -111,14 +110,14 @@ public class CosmosDbService
                 IndexingPolicy = new IndexingPolicy
                 {
                     // Define the vector index policy
-                    VectorIndexes = new()
-                {
-                    new VectorIndexPath
-                    {
-                        Path = "/vectors",
-                        Type = VectorIndexType.QuantizedFlat
-                    }
-                }
+                    VectorIndexes =
+                    [
+                        new VectorIndexPath
+                        {
+                            Path = "/vectors",
+                            Type = VectorIndexType.QuantizedFlat
+                        }
+                    ]
                 }
             };
 
@@ -264,18 +263,13 @@ public class CosmosDbService
     /// Class to handle bulk operations for a generic type T.
     /// </summary>
     /// <typeparam name="T">The type of the items being operated on.</typeparam>
-    private class BulkOperations<T>
+    private class BulkOperations<T>(int operationCount)
     {
-        public readonly List<Task<OperationResponse<T>>> Tasks;
+        public readonly List<Task<OperationResponse<T>>> Tasks = new(operationCount);
 
         private readonly Stopwatch stopwatch = Stopwatch.StartNew();
 
-        public BulkOperations(int operationCount)
-        {
-            this.Tasks = new List<Task<OperationResponse<T>>>(operationCount);
-        }
-
-/// <summary>
+        /// <summary>
         /// Executes all the bulk operations and returns a summary of the results.
         /// </summary>
         /// <returns>A <see cref="BulkOperationResponse{T}"/> containing the results of the bulk operations.</returns>
