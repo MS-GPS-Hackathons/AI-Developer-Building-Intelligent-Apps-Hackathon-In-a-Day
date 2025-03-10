@@ -31,23 +31,23 @@ namespace AIDevHackathon.ConsoleApp.BasicNLtoSQL
                 builder.Services.AddSingleton<ILogger>(logger);
 
                 // Build the kernel
-                Kernel kernel = builder.Build();
+                var kernel = builder.Build();
 
                 // Import the prompts plugin from the prompt directory
                 kernel.ImportPluginFromPromptDirectory("Prompts");
 
                 // Retrieve the chat completion service from the kernel
-                IChatCompletionService chatCompletionService = kernel.GetRequiredService<IChatCompletionService>();
+                var chatCompletionService = kernel.GetRequiredService<IChatCompletionService>();
 
                 // Create the chat history
-                string systemPrompt = @"
+                var systemPrompt = @"
                         You are an sql query assistant, you transform natural language to sql statements.
                         ";
 
-                ChatHistory chatMessages = new ChatHistory(systemPrompt);
+                var chatMessages = new ChatHistory(systemPrompt);
 
                 //Load the database schema
-                string sqlSchema = File.ReadAllText("Data\\dbschema.txt");
+                var sqlSchema = await File.ReadAllTextAsync("D:\\Projects\\AI-Developer-Building-Intelligent-Apps-Hackathon\\Coach\\Solutions\\Challenge-07\\src\\BasicNLtoSQL\\Data");
 
                 // Start the conversation
                 while (true)
@@ -56,7 +56,7 @@ namespace AIDevHackathon.ConsoleApp.BasicNLtoSQL
                     {
                         // Get user input
                         System.Console.Write("User > ");
-                        string userInput = Console.ReadLine();
+                        var userInput = Console.ReadLine();
 
                         // Add the user message to the chat history
                         chatMessages.AddUserMessage(userInput);
@@ -65,7 +65,7 @@ namespace AIDevHackathon.ConsoleApp.BasicNLtoSQL
                         var result =  kernel.InvokeStreamingAsync("Prompts", "BasicNLtoSQL", new() { { "input", userInput },{ "sqlSchema", sqlSchema } } );
                                       
                         // Stream the results
-                        string fullMessage = "";
+                        var fullMessage = "";
                         await foreach (var content in result)
                         {
                             System.Console.Write(content);

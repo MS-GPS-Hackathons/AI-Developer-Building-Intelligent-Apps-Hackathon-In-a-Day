@@ -1,0 +1,160 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35825.156 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3-Challenge", "3-Challenge", "{971FF9DB-E6B6-47BF-8D02-231D5357D41A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureOpenAISDK", "Challenge-03\src\AzureOpenAISDK\AzureOpenAISDK.csproj", "{EFA1CDAA-B00B-4DD0-A715-1E42DAC01A87}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4-Challenge", "4-Challenge", "{6746E3D9-D367-4DCF-9C5B-4674D251A2F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemanticKernel.Lights", "Challenge-04\src\SemanticKernel.Lights\SemanticKernel.Lights.csproj", "{8263AF89-A420-428C-A575-F44AB79E6BCC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5-Challenge", "5-Challenge", "{AB193BF1-799A-475A-98B6-F8ECD8F97FA8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemanticKernel.Lights.AppInsights", "Challenge-05\src\AppInsights\SemanticKernel.Lights.AppInsights.csproj", "{E66251F9-5B07-45FB-ADD4-5F262E0C7088}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemanticKernel.Lights.Aspire", "Challenge-05\src\AspireDashboard\SemanticKernel.Lights.Aspire.csproj", "{AC9625B9-1DA4-403D-80A8-F951094CCC14}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelemetryAspireDashboardQuickstart", "Challenge-05\src\TelemetryAspireDashboardQuickstart\TelemetryAspireDashboardQuickstart.csproj", "{61D78A3A-B168-49B5-8FB5-6FB1A5D6CDEB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6-Challenge", "6-Challenge", "{A35D3527-9290-42ED-AB61-2372FB6649E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VectorDB.Recipes", "Challenge-06\src\VectorDB.Recipes.csproj", "{7C0E1FD6-7CA8-4B06-AED0-738452CCD913}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Misc", "Misc", "{64B560A2-7869-4FA0-9D0B-891D7691418D}"
+	ProjectSection(SolutionItems) = preProject
+		Challenge-06\AssignRoleDefinition.ps1 = Challenge-06\AssignRoleDefinition.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{01C11C3D-5F08-42BB-8586-18FFCB190B19}"
+	ProjectSection(SolutionItems) = preProject
+		Challenge-06\DataSet\Recipe\Baklava.json = Challenge-06\DataSet\Recipe\Baklava.json
+		Challenge-06\DataSet\Recipe\Bruschetta.json = Challenge-06\DataSet\Recipe\Bruschetta.json
+		Challenge-06\DataSet\Recipe\ButterChicken.json = Challenge-06\DataSet\Recipe\ButterChicken.json
+		Challenge-06\DataSet\Recipe\CaesarSalad.json = Challenge-06\DataSet\Recipe\CaesarSalad.json
+		Challenge-06\DataSet\Recipe\ChaiTea.json = Challenge-06\DataSet\Recipe\ChaiTea.json
+		Challenge-06\DataSet\Recipe\Cheesecake.json = Challenge-06\DataSet\Recipe\Cheesecake.json
+		Challenge-06\DataSet\Recipe\Empanadas.json = Challenge-06\DataSet\Recipe\Empanadas.json
+		Challenge-06\DataSet\Recipe\Hamburger.json = Challenge-06\DataSet\Recipe\Hamburger.json
+		Challenge-06\DataSet\Recipe\IrishCoffee.json = Challenge-06\DataSet\Recipe\IrishCoffee.json
+		Challenge-06\DataSet\Recipe\Margarita.json = Challenge-06\DataSet\Recipe\Margarita.json
+		Challenge-06\DataSet\Recipe\Samosas.json = Challenge-06\DataSet\Recipe\Samosas.json
+		Challenge-06\DataSet\Recipe\Tacos.json = Challenge-06\DataSet\Recipe\Tacos.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "7-Challenge", "7-Challenge", "{FB89E360-A1A1-49EC-B018-00A618BC9D1C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasicNLtoSQL", "Challenge-07\src\BasicNLtoSQL\BasicNLtoSQL.csproj", "{2ABF8C1E-6F60-435E-969E-4EBC19023EF1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "8-Challenge", "8-Challenge", "{4EA291EC-2D5E-4CC4-8170-547136ADE3D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvancedNLtoSQL", "Challenge-08\src\AdvancedNLtoSQL\AdvancedNLtoSQL.csproj", "{82075AF6-DAC9-4F05-89C9-1ABBE878D67F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Misc", "Misc", "{3FE83272-D41C-4DFA-9B3C-8B4A63B90999}"
+	ProjectSection(SolutionItems) = preProject
+		Challenge-08\DatabaseService.cs = Challenge-08\DatabaseService.cs
+		Challenge-08\deploy-sql.azcli = Challenge-08\deploy-sql.azcli
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "10-Challenge", "10-Challenge", "{AA76C866-7124-474D-9C22-1A743727B999}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0-Misc", "0-Misc", "{4E9340D0-E09A-440D-A284-D351DD4FE2DE}"
+	ProjectSection(SolutionItems) = preProject
+		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1-Student", "1-Student", "{3B6665CC-6035-409E-868C-668213C68404}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\Student\Challenge-00.md = ..\..\Student\Challenge-00.md
+		..\..\Student\Challenge-01.md = ..\..\Student\Challenge-01.md
+		..\..\Student\Challenge-02.md = ..\..\Student\Challenge-02.md
+		..\..\Student\Challenge-03.md = ..\..\Student\Challenge-03.md
+		..\..\Student\Challenge-04.md = ..\..\Student\Challenge-04.md
+		..\..\Student\Challenge-05.md = ..\..\Student\Challenge-05.md
+		..\..\Student\Challenge-06.md = ..\..\Student\Challenge-06.md
+		..\..\Student\Challenge-07.md = ..\..\Student\Challenge-07.md
+		..\..\Student\Challenge-08.md = ..\..\Student\Challenge-08.md
+		..\..\Student\Challenge-09.md = ..\..\Student\Challenge-09.md
+		..\..\Student\Challenge-10.md = ..\..\Student\Challenge-10.md
+		..\..\Student\Challenge-11.md = ..\..\Student\Challenge-11.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiAgents", "Challenge-11\src\MultiAgents\MultiAgents.csproj", "{340CC9FA-86CF-46D9-95F7-EE0D4B4FA9DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiAgents.Demo", "MultiAgents.Demo\MultiAgents.Demo.csproj", "{7B05A4BA-000D-4D10-B838-1D968F47E8E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiAgents", "Challenge-10\src\MultiAgents\MultiAgents.csproj", "{4CFBCE2F-6A7B-4E2E-BAC5-BE9715763EEC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EFA1CDAA-B00B-4DD0-A715-1E42DAC01A87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFA1CDAA-B00B-4DD0-A715-1E42DAC01A87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFA1CDAA-B00B-4DD0-A715-1E42DAC01A87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFA1CDAA-B00B-4DD0-A715-1E42DAC01A87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8263AF89-A420-428C-A575-F44AB79E6BCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8263AF89-A420-428C-A575-F44AB79E6BCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8263AF89-A420-428C-A575-F44AB79E6BCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8263AF89-A420-428C-A575-F44AB79E6BCC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E66251F9-5B07-45FB-ADD4-5F262E0C7088}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E66251F9-5B07-45FB-ADD4-5F262E0C7088}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E66251F9-5B07-45FB-ADD4-5F262E0C7088}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E66251F9-5B07-45FB-ADD4-5F262E0C7088}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC9625B9-1DA4-403D-80A8-F951094CCC14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC9625B9-1DA4-403D-80A8-F951094CCC14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC9625B9-1DA4-403D-80A8-F951094CCC14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC9625B9-1DA4-403D-80A8-F951094CCC14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61D78A3A-B168-49B5-8FB5-6FB1A5D6CDEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61D78A3A-B168-49B5-8FB5-6FB1A5D6CDEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61D78A3A-B168-49B5-8FB5-6FB1A5D6CDEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61D78A3A-B168-49B5-8FB5-6FB1A5D6CDEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C0E1FD6-7CA8-4B06-AED0-738452CCD913}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C0E1FD6-7CA8-4B06-AED0-738452CCD913}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C0E1FD6-7CA8-4B06-AED0-738452CCD913}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C0E1FD6-7CA8-4B06-AED0-738452CCD913}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2ABF8C1E-6F60-435E-969E-4EBC19023EF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2ABF8C1E-6F60-435E-969E-4EBC19023EF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2ABF8C1E-6F60-435E-969E-4EBC19023EF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2ABF8C1E-6F60-435E-969E-4EBC19023EF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82075AF6-DAC9-4F05-89C9-1ABBE878D67F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82075AF6-DAC9-4F05-89C9-1ABBE878D67F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82075AF6-DAC9-4F05-89C9-1ABBE878D67F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82075AF6-DAC9-4F05-89C9-1ABBE878D67F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{340CC9FA-86CF-46D9-95F7-EE0D4B4FA9DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{340CC9FA-86CF-46D9-95F7-EE0D4B4FA9DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{340CC9FA-86CF-46D9-95F7-EE0D4B4FA9DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{340CC9FA-86CF-46D9-95F7-EE0D4B4FA9DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B05A4BA-000D-4D10-B838-1D968F47E8E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B05A4BA-000D-4D10-B838-1D968F47E8E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B05A4BA-000D-4D10-B838-1D968F47E8E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B05A4BA-000D-4D10-B838-1D968F47E8E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CFBCE2F-6A7B-4E2E-BAC5-BE9715763EEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CFBCE2F-6A7B-4E2E-BAC5-BE9715763EEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CFBCE2F-6A7B-4E2E-BAC5-BE9715763EEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CFBCE2F-6A7B-4E2E-BAC5-BE9715763EEC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EFA1CDAA-B00B-4DD0-A715-1E42DAC01A87} = {971FF9DB-E6B6-47BF-8D02-231D5357D41A}
+		{8263AF89-A420-428C-A575-F44AB79E6BCC} = {6746E3D9-D367-4DCF-9C5B-4674D251A2F4}
+		{E66251F9-5B07-45FB-ADD4-5F262E0C7088} = {AB193BF1-799A-475A-98B6-F8ECD8F97FA8}
+		{AC9625B9-1DA4-403D-80A8-F951094CCC14} = {AB193BF1-799A-475A-98B6-F8ECD8F97FA8}
+		{61D78A3A-B168-49B5-8FB5-6FB1A5D6CDEB} = {AB193BF1-799A-475A-98B6-F8ECD8F97FA8}
+		{7C0E1FD6-7CA8-4B06-AED0-738452CCD913} = {A35D3527-9290-42ED-AB61-2372FB6649E8}
+		{64B560A2-7869-4FA0-9D0B-891D7691418D} = {A35D3527-9290-42ED-AB61-2372FB6649E8}
+		{01C11C3D-5F08-42BB-8586-18FFCB190B19} = {A35D3527-9290-42ED-AB61-2372FB6649E8}
+		{2ABF8C1E-6F60-435E-969E-4EBC19023EF1} = {FB89E360-A1A1-49EC-B018-00A618BC9D1C}
+		{82075AF6-DAC9-4F05-89C9-1ABBE878D67F} = {4EA291EC-2D5E-4CC4-8170-547136ADE3D2}
+		{3FE83272-D41C-4DFA-9B3C-8B4A63B90999} = {4EA291EC-2D5E-4CC4-8170-547136ADE3D2}
+		{340CC9FA-86CF-46D9-95F7-EE0D4B4FA9DE} = {AA76C866-7124-474D-9C22-1A743727B999}
+		{7B05A4BA-000D-4D10-B838-1D968F47E8E5} = {AA76C866-7124-474D-9C22-1A743727B999}
+		{4CFBCE2F-6A7B-4E2E-BAC5-BE9715763EEC} = {AA76C866-7124-474D-9C22-1A743727B999}
+	EndGlobalSection
+EndGlobal

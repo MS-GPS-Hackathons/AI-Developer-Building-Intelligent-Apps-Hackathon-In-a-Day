@@ -75,7 +75,11 @@ The intended audience are individuals with coding skills.
 
 - This challenge encourages creative thinking about AI applications in various industries and their impact on solving real-world problems.
 
-### (Optional) Challenge 10: **[Deploy your intelligent app as a web chatbot](Student/Challenge-10.md)**
+### Challenge 10: **[Create multi-agent system strategy](Student/Challenge-10.md)**
+
+- This challenge focuses on the design and implementation of a multi-agent system. Participants will learn how to create a system where multiple agents can work together to solve complex problems, leveraging the capabilities of Azure OpenAI and Semantic Kernel.
+
+### (Optional) Challenge 11: **[Deploy your intelligent app as a web chatbot](Student/Challenge-11.md)**
 
 - Are you feeling too comfortable and eager to do more? This additional challenge will push your skills further by deploying your NL to SQL application to Azure as a web chatbot.
 

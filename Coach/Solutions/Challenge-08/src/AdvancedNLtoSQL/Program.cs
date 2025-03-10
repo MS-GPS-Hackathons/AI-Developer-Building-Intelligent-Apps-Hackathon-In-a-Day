@@ -26,24 +26,24 @@ namespace SK.NLtoSQL
                                     .AddAzureOpenAIChatCompletion(azureConfig.AOAIDeploymentId, azureConfig.AOAIEndpoint, azureConfig.AOAIKey);
 
                 //Initialize the database service
-                DatabaseService dbService = new DatabaseService(azureConfig.SQLHostname, azureConfig.SQLUsername, azureConfig.SQLPassword, azureConfig.SQLDatabase);
+                var dbService = new DatabaseService(azureConfig.SQLHostname, azureConfig.SQLUsername, azureConfig.SQLPassword, azureConfig.SQLDatabase);
 
                 //Add the SQLSchemaInfo plugin
                 builder.Services.AddSingleton<DatabaseService>(dbService);
                 builder.Plugins.AddFromType<SQLSchemaInfo>();
-                Kernel kernel = builder.Build();
+                var kernel = builder.Build();
 
                 // Retrieve the chat completion service from the kernel
-                IChatCompletionService chatCompletionService = kernel.GetRequiredService<IChatCompletionService>();
+                var chatCompletionService = kernel.GetRequiredService<IChatCompletionService>();
 
                 // Create the chat history
-                string systemPrompt = @"
+                var systemPrompt = @"
                         You are an sql query assistant, you transform natural language to sql statements. Please explain briefly to the user how you create the sql statements and then show the sql statement to the user.
                         After that please execute the command with sample data and show the result to the user with max of 6 columns.
                         If the user doesn't provide enough information for you to complete the query, you will keep asking questions until you have enough information to complete.
                         ";
 
-                ChatHistory chatMessages = new ChatHistory(systemPrompt);
+                var chatMessages = new ChatHistory(systemPrompt);
 
                 // Start the conversation
                 while (true)
@@ -72,7 +72,7 @@ namespace SK.NLtoSQL
                             kernel: kernel);
 
                         // Stream the results
-                        string fullMessage = "";
+                        var fullMessage = "";
                         await foreach (var content in result)
                         {
                             if (content.Role.HasValue )

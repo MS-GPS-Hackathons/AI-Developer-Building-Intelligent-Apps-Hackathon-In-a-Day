@@ -35,10 +35,10 @@ public class CosmosDbService
     /// </remarks>
     public CosmosDbService(string endpoint, string databaseName, string containerName, string key)
     {
-        ArgumentNullException.ThrowIfNullOrEmpty(endpoint);
-        ArgumentNullException.ThrowIfNullOrEmpty(key);
-        ArgumentNullException.ThrowIfNullOrEmpty(databaseName);
-        ArgumentNullException.ThrowIfNullOrEmpty(containerName);
+        ArgumentException.ThrowIfNullOrEmpty(endpoint);
+        ArgumentException.ThrowIfNullOrEmpty(key);
+        ArgumentException.ThrowIfNullOrEmpty(databaseName);
+        ArgumentException.ThrowIfNullOrEmpty(containerName);
 
 
         CosmosSerializationOptions options = new()
@@ -53,8 +53,7 @@ public class CosmosDbService
            .Build();
 
         _database = _client?.GetDatabase(databaseName);
-        Container? container = _database?.GetContainer(containerName);
-
+        var container = _database?.GetContainer(containerName);
 
         _container = container ??
             throw new ArgumentException("Unable to connect to existing Azure Cosmos DB container or database.");
@@ -88,10 +87,10 @@ public class CosmosDbService
     {
         try
         {
-            ThroughputProperties throughputProperties = ThroughputProperties.CreateAutoscaleThroughput(1000);
+            var throughputProperties = ThroughputProperties.CreateAutoscaleThroughput(1000);
 
             // Define new container properties including the vector indexing policy
-            ContainerProperties properties = new ContainerProperties(id: containerName, partitionKeyPath: "/id")
+            var properties = new ContainerProperties(id: containerName, partitionKeyPath: "/id")
             {
                 // Set the default time to live for cache items to 1 day
                 DefaultTimeToLive = 86400,
@@ -100,25 +99,25 @@ public class CosmosDbService
                 VectorEmbeddingPolicy = new(
                 new Collection<Embedding>(
                 [
-                    new Embedding()
-                {
+                    new Embedding
+                    {
                     Path = "/vectors",
                     DataType = VectorDataType.Float32,
                     DistanceFunction = DistanceFunction.Cosine,
                     Dimensions = 1536
                 }
                 ])),
-                IndexingPolicy = new IndexingPolicy()
+                IndexingPolicy = new IndexingPolicy
                 {
                     // Define the vector index policy
-                    VectorIndexes = new()
-                {
-                    new VectorIndexPath()
-                    {
-                        Path = "/vectors",
-                        Type = VectorIndexType.QuantizedFlat
-                    }
-                }
+                    VectorIndexes =
+                    [
+                        new VectorIndexPath
+                        {
+                            Path = "/vectors",
+                            Type = VectorIndexType.QuantizedFlat
+                        }
+                    ]
                 }
             };
 
@@ -143,7 +142,7 @@ public class CosmosDbService
     public async Task<List<Recipe>> SingleVectorSearch(float[] vectors, double similarityScore)
     {
         // Define the query to search for recipes based on the vector similarity score
-        string queryText = @"SELECT Top 3 x.name,x.description, x.ingredients, x.cuisine,x.difficulty, x.prepTime,x.cookTime,x.totalTime,x.servings, x.similarityScore
+        var queryText = @"SELECT Top 3 x.name,x.description, x.ingredients, x.cuisine,x.difficulty, x.prepTime,x.cookTime,x.totalTime,x.servings, x.similarityScore
                             FROM (SELECT c.name,c.description, c.ingredients, c.cuisine,c.difficulty, c.prepTime,c.cookTime,c.totalTime,c.servings,
                                 VectorDistance(c.vectors, @vectors, false) as similarityScore FROM c) x
                                     WHERE x.similarityScore > @similarityScore ORDER BY x.similarityScore desc";
@@ -174,7 +173,7 @@ public class CosmosDbService
     public async Task<List<Recipe>> GetRecipesToVectorizeAsync()
     {
         // Define the query to search for recipes that are not vectorized
-        QueryDefinition query = new QueryDefinition("SELECT * FROM c WHERE IS_ARRAY(c.vectors)=false");
+        var query = new QueryDefinition("SELECT * FROM c WHERE IS_ARRAY(c.vectors)=false");
 
 
         // Execute the query and retrieve the results
@@ -196,7 +195,7 @@ public class CosmosDbService
     public async Task<List<Recipe>> GetRecipesAsync()
     {
         // Define the query to search for all recipes
-        QueryDefinition query = new QueryDefinition("SELECT * FROM c");
+        var query = new QueryDefinition("SELECT * FROM c");
 
         // Execute the query and retrieve the results
         FeedIterator<Recipe> results = _container.GetItemQueryIterator<Recipe>(query);
@@ -217,7 +216,7 @@ public class CosmosDbService
     public async Task<int> GetRecipeCountAsync(bool withEmbedding)
     {
         // Define the query to get Recipes count based on embeddings status
-        QueryDefinition query = new QueryDefinition("SELECT value Count(c.id) FROM c WHERE IS_ARRAY(c.vectors)=@status")
+        var query = new QueryDefinition("SELECT value Count(c.id) FROM c WHERE IS_ARRAY(c.vectors)=@status")
             .WithParameter("@status", withEmbedding);
 
         // Execute the query and retrieve the results
@@ -237,7 +236,7 @@ public class CosmosDbService
     {
         // Create a new BulkOperations instance to add recipes in bulk
         BulkOperations<Recipe> bulkOperations = new BulkOperations<Recipe>(recipes.Count);
-        foreach (Recipe recipe in recipes)
+        foreach (var recipe in recipes)
         {
             bulkOperations.Tasks.Add(CaptureOperationResponse(_container.CreateItemAsync(recipe, new PartitionKey(recipe.id)), recipe));
         }
@@ -264,18 +263,13 @@ public class CosmosDbService
     /// Class to handle bulk operations for a generic type T.
     /// </summary>
     /// <typeparam name="T">The type of the items being operated on.</typeparam>
-    private class BulkOperations<T>
+    private class BulkOperations<T>(int operationCount)
     {
-        public readonly List<Task<OperationResponse<T>>> Tasks;
+        public readonly List<Task<OperationResponse<T>>> Tasks = new(operationCount);
 
         private readonly Stopwatch stopwatch = Stopwatch.StartNew();
 
-        public BulkOperations(int operationCount)
-        {
-            this.Tasks = new List<Task<OperationResponse<T>>>(operationCount);
-        }
-
-/// <summary>
+        /// <summary>
         /// Executes all the bulk operations and returns a summary of the results.
         /// </summary>
         /// <returns>A <see cref="BulkOperationResponse{T}"/> containing the results of the bulk operations.</returns>
@@ -284,7 +278,7 @@ public class CosmosDbService
         {
             await Task.WhenAll(this.Tasks);
             this.stopwatch.Stop();
-            return new BulkOperationResponse<T>()
+            return new BulkOperationResponse<T>
             {
                 TotalTimeTaken = this.stopwatch.Elapsed,
                 TotalRequestUnitsConsumed = this.Tasks.Sum(task => task.Result.RequestUnitsConsumed),
@@ -334,7 +328,7 @@ public class CosmosDbService
         try
         {
             ItemResponse<T> response = await task;
-            return new OperationResponse<T>()
+            return new OperationResponse<T>
             {
                 Item = item,
                 IsSuccessful = true,
@@ -345,7 +339,7 @@ public class CosmosDbService
         {
             if (ex is CosmosException cosmosException)
             {
-                return new OperationResponse<T>()
+                return new OperationResponse<T>
                 {
                     Item = item,
                     RequestUnitsConsumed = cosmosException.RequestCharge,
@@ -354,7 +348,7 @@ public class CosmosDbService
                 };
             }
 
-            return new OperationResponse<T>()
+            return new OperationResponse<T>
             {
                 Item = item,
                 IsSuccessful = false,

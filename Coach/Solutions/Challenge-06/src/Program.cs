@@ -98,11 +98,11 @@ namespace AIDevHackathon.ConsoleApp.VectorDB.Recipes
         private static OpenAIService initOpenAIService(IConfiguration config)
         {
             // Get the OpenAI service settings from the configuration
-            string endpoint = config["OpenAIEndpoint"];
-            string key = config["OpenAIKey"];
-            string embeddingDeployment = config["OpenAIEmbeddingDeployment"];
-            string completionsDeployment = config["OpenAIcompletionsDeployment"];
-            string maxToken = config["OpenAIMaxToken"];
+            var endpoint = config["OpenAIEndpoint"];
+            var key = config["OpenAIKey"];
+            var embeddingDeployment = config["OpenAIEmbeddingDeployment"];
+            var completionsDeployment = config["OpenAIcompletionsDeployment"];
+            var maxToken = config["OpenAIMaxToken"];
 
             // Initialize the OpenAI service
             return new OpenAIService(endpoint, key, embeddingDeployment, completionsDeployment, maxToken);
@@ -119,14 +119,14 @@ namespace AIDevHackathon.ConsoleApp.VectorDB.Recipes
             CosmosDbService cosmosService = null;
 
             // Get the Cosmos DB service settings from the configuration
-            string endpoint = config["CosmosUri"];
-            string databaseName = config["CosmosDatabase"];
-            string containerName = config["CosmosContainer"];
-            string key = config["CosmosKey"];
+            var endpoint = config["CosmosUri"];
+            var databaseName = config["CosmosDatabase"];
+            var containerName = config["CosmosContainer"];
+            var key = config["CosmosKey"];
 
-            int recipeWithEmbedding = 0;
-            int recipeWithNoEmbedding = 0;
-            bool containerExist = false;
+            var recipeWithEmbedding = 0;
+            var recipeWithNoEmbedding = 0;
+            var containerExist = false;
 
             AnsiConsole.Status()
                 .Start("Processing...", ctx =>
@@ -174,9 +174,9 @@ namespace AIDevHackathon.ConsoleApp.VectorDB.Recipes
         private static void createCosmosContainer(IConfiguration config)
         {
             // Get the Cosmos DB service settings from the configuration
-            string databaseName = config["CosmosDatabase"];
-            string containerName = config["CosmosContainer"];
-            bool isSucess = false;
+            var databaseName = config["CosmosDatabase"];
+            var containerName = config["CosmosContainer"];
+            var isSucess = false;
 
             AnsiConsole.Status()
                .Start("Creating Cosmos container...", ctx =>
@@ -205,8 +205,8 @@ namespace AIDevHackathon.ConsoleApp.VectorDB.Recipes
                    ctx.Spinner(Spinner.Known.Star);
                    ctx.SpinnerStyle(Style.Parse("green"));
 
-                   int recipeWithEmbedding = 0;
-                   int recipeWithNoEmbedding = 0;
+                   var recipeWithEmbedding = 0;
+                   var recipeWithNoEmbedding = 0;
 
                    ctx.Status("Getting recipe(s)..");
 
@@ -252,9 +252,9 @@ namespace AIDevHackathon.ConsoleApp.VectorDB.Recipes
         private static void UploadRecipes(IConfiguration config)
         {
             // Get the local folder path from the configuration
-            string folder = config["RecipeLocalFolder"];
-            int recipeWithEmbedding = 0;
-            int recipeWithNoEmbedding = 0;
+            var folder = config["RecipeLocalFolder"];
+            var recipeWithEmbedding = 0;
+            var recipeWithNoEmbedding = 0;
 
             List<Recipe> recipes = null;
 
@@ -294,10 +294,10 @@ namespace AIDevHackathon.ConsoleApp.VectorDB.Recipes
         {
             Dictionary<string, float[]> dictEmbeddings = new Dictionary<string, float[]>();
 
-            string chatCompletion = string.Empty;
+            var chatCompletion = string.Empty;
 
             // Get the user query
-            string userQuery = Console.Prompt(
+            var userQuery = Console.Prompt(
                 new TextPrompt<string>("Type the recipe name or your question, hit enter when ready.")
                     .PromptStyle("teal")
             );
@@ -325,7 +325,7 @@ namespace AIDevHackathon.ConsoleApp.VectorDB.Recipes
 
                    ctx.Status($"Processing {retrivedDocs.Count} to generate Chat Response using OpenAI Service..");
 
-                   string retrivedReceipeNames = string.Empty;
+                   var retrivedReceipeNames = string.Empty;
 
                    foreach (var recipe in retrivedDocs)
                    {
@@ -335,7 +335,7 @@ namespace AIDevHackathon.ConsoleApp.VectorDB.Recipes
 
                    ctx.Status($"Processing '{retrivedReceipeNames}' to generate Completion using OpenAI Service..");
                    //Get the chat completion for the user query and retrived recipes
-                   (string completion, int promptTokens, int completionTokens) = openAIEmbeddingService.GetChatCompletionAsync(userQuery, JsonConvert.SerializeObject(retrivedDocs)).GetAwaiter().GetResult();
+                   (var completion, var promptTokens, var completionTokens) = openAIEmbeddingService.GetChatCompletionAsync(userQuery, JsonConvert.SerializeObject(retrivedDocs)).GetAwaiter().GetResult();
                    chatCompletion = completion;
                });
 
@@ -356,9 +356,9 @@ namespace AIDevHackathon.ConsoleApp.VectorDB.Recipes
         private static void GenerateEmbeddings(IConfiguration config)
         {
             Dictionary<string, float[]> dictEmbeddings = new Dictionary<string, float[]>();
-            int recipeWithEmbedding = 0;
-            int recipeWithNoEmbedding = 0;
-            int recipeCount = 0;
+            var recipeWithEmbedding = 0;
+            var recipeWithNoEmbedding = 0;
+            var recipeCount = 0;
 
             AnsiConsole.Status()
                .Start("Processing...", ctx =>
