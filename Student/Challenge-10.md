@@ -40,6 +40,12 @@ You have 2 instructions for the agent:
 - **Travel Agent**: "You create detailed travel itineraries based on user preferences. You are very concise, to the point and do not waste time explaining things in detail. At the end of each plan, you also calculate your total and make sure you provide reasoning for that total budget. Consider suggestions when revising the travel plan.",
 - **Budget Agent**: "You analyze travel plans and suggest adjustments to fit within the total cost. Your goal is to ensure that the user's travel plans are financially feasible and not beyond the total cost. If they are not within the range, provide feedback and reject the plan with 'no'. If it is within a range then approve it with 'yes'."
 
+To expedite the request team provided you with the following:
+- class [BudgetAdvisor](/Resources/Challenge-10/BudgetAdvisor.cs) -- Semantic Kernel Function which will help you to calculate the budget of the travel plan.
+- class [AgentHelpers](/Resources/Challenge-10/AgentHelpers.cs) -- helper function to create an agent for Travel and Budget with Semantic Kernel.
+
+Build a strategy to use the above agents to create a multi-agent system that can work together to achieve a common goal.
+
 ## Success Criteria
 
 - Demonstrate that you have built a multi-agent system that uses multiple agents to solve a problem with minimal human

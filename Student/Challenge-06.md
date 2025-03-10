@@ -73,7 +73,7 @@ or [Python](https://github.com/microsoft/AzureDataRetrievalAugmentedGenerationSa
 
 - Demonstrate that you have created the Cosmos DB database
 - Demonstrate that you push the sample data into Cosmos DB
-- Demonstrate that you vectorize the sample data into Cosmos DB.
+- Demonstrate that you vectorized the sample data into Cosmos DB.
 - Demonstrate that you can ask questions on recipes and get responses on your own data stored in Cosmos DB
 - Explain to your coach the main differences of Azure AI Search and CosmosDB used as vector database
 
