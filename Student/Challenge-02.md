@@ -21,18 +21,18 @@ You will use generative AI and prompt flow UI to build, configure, and deploy a 
 The copilot should answer questions about your products and services. For example, the copilot can answer questions such as "How much do the TrailWalker hiking shoes cost?"
 
 You should complete the following steps
-- Create a "Q&A on Your Data" prompt flow
+- Clone a chat prompt flow to ground your data
 - Customize prompt flow and ground your data created in previous challenge.
 - Deploy the flow for consumption.
 - (Optional) Evaluate the flow using a question and answer evaluation dataset.
 
 > [!NOTE]
-> Clone a prompt flow from the samples available
+> Clone the chat prompt flow "Multi-Round Q&A on Your Data" from the samples available
 
 You can find the sample product information data used in previous challenge [here](./Resources/Challenge-01/Data/product-info)
 
 ## Success Criteria
-- Demonstrate that you can chat within prompt flow with product info. Get answers to questions such as "How much are the TrailWalker hiking shoes?"
+- Demonstrate that you can chat within prompt flow with product info. Get answers to questions such as "Give me the description of the TrailWalker hiking shoes"
 - Demonstrate that you deploy the flow and you can use the REST endpoint or the SDK to use the deployed flow.
 - Describe the prompt flow steps to your coach.
 - (Optional) Evaluate the flow using a question and answer evaluation dataset (here is the [eval_dataset](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/blob/main/src/evaluation/evaluation_dataset.jsonl))
