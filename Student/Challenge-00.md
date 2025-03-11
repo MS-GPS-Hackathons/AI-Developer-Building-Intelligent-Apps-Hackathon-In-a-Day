@@ -19,7 +19,7 @@ In this session you will setup your computer and cloud environment with the mini
 
 Setup and configure the following tools
 
-- Use your active Azure Subscription or the one provided for the hackathon. If you already have a subscription you can use it or you can get a free trial [here](https://azure.microsoft.com/free/).
+- Use your active Azure Subscription or the one provided for the hackathon.
 - Log into the [Azure Portal](https://portal.azure.com) and confirm that you have an active subscription that you can deploy cloud services.
 - Use the latest version of [Visual Studio](https://visualstudio.microsoft.com) or [Visual Studio Code](https://code.visualstudio.com) if you don't have it.
 - Install .NET 8.0 SDK or later version
