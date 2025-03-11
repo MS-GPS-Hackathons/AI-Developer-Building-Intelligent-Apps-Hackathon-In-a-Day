@@ -39,10 +39,10 @@ You can find the sample product information data for grounding your own data [he
 - Deploy the web app and demonstrate that you can chat on your own data in the deployed app.
   
 ## Learning Resources
-- [Create a project and use the chat playground in Azure AI Studio - Azure AI Studio | Microsoft Learn](https://learn.microsoft.com/en-us/azure/ai-studio/quickstarts/get-started-playground)
-- [Deploy an Enterprise Chat web app in the Azure AI Studio playground - Azure AI Studio | Microsoft Learn](https://learn.microsoft.com/en-us/azure/ai-studio/tutorials/deploy-chat-web-app)
-- [Azure AI Studio | Microsoft Learn](https://learn.microsoft.com/en-us/azure/ai-studio/what-is-ai-studio)
-- [RAG and generative AI - Azure AI Search | Microsoft Learn](https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview)
+- [Quickstart: Use the chat playground in Azure AI Foundry portal](https://learn.microsoft.com/en-us/azure/ai-studio/quickstarts/get-started-playground)
+- [Deploy an Enterprise Chat web app](https://learn.microsoft.com/en-us/azure/ai-studio/tutorials/deploy-chat-web-app)
+- [Azure AI Foundry](https://learn.microsoft.com/en-us/azure/ai-studio/what-is-ai-studio)
+- [RAG and generative AI - Azure AI Search](https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview)
 - [Hybrid search - Azure AI Search | Microsoft Learn](https://learn.microsoft.com/en-us/azure/search/hybrid-search-overview)
-- [Azure OpenAI Service models - Azure OpenAI | Microsoft Learn](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models?tabs=python-secure%2Cglobal-standard%2Cstandard-chat-completions)
-- [Supported regions - Azure AI Search | Microsoft Learn](https://learn.microsoft.com/en-us/azure/search/search-region-support)
+- [Azure OpenAI Service models](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models?tabs=python-secure%2Cglobal-standard%2Cstandard-chat-completions)
+- [Supported regions - Azure AI Search](https://learn.microsoft.com/en-us/azure/search/search-region-support)
