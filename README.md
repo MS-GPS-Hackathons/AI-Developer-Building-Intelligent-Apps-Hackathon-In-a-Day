@@ -47,9 +47,9 @@ The intended audience are individuals with coding skills.
 
 - Discover how to create a responsive QnA system using prompt flow, allowing for intuitive and efficient user interactions with your AI solutions.
 
-### Challenge 3: **[Start coding with Azure OpenAI SDK.](Student/Challenge-03.md)**
+### Challenge 3: **[Start coding with Azure OpenAI SDK and Inference SDK.](Student/Challenge-03.md)**
 
-- Use Azure OpenAI SDK to start coding your intelligent apps. The Azure OpenAI SDK is a set of client libraries that allows developers to interact with Azure AI Services. This service provides access to powerful foundational models, with the security and enterprise capabilities of Azure.
+- Use Azure OpenAI or Inference SDK to start coding your intelligent apps. The Azure AI Foundry SDK is a comprehensive toolchain designed to simplify the development of AI applications on Azure. The SDKs are a set of client libraries that allows developers to interact with Azure AI Services.
 
 ### Challenge 4: **[Use Semantic Kernel as an Orchestrator to create a basic intelligent app.](Student/Challenge-04.md)**
 
