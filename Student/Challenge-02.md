@@ -35,7 +35,7 @@ You can find the sample product information data used in previous challenge [her
 - Demonstrate that you can chat within prompt flow with product info. Get answers to questions such as "Give me the description of the TrailWalker hiking shoes"
 - Demonstrate that you deploy the flow and you can use the REST endpoint or the SDK to use the deployed flow.
 - Describe the prompt flow steps to your coach.
-- (Optional) Evaluate the flow using a question and answer evaluation dataset (here is the [eval_dataset](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/blob/main/src/evaluation/evaluation_dataset.jsonl))
+- (Optional) Evaluate the flow using a question and answer evaluation dataset (here is the [eval_dataset](./Resources/Challenge-02/evaluation_dataset.jsonl))
 - (Optional) Show the evaluation status and results.
 
 ## Learning Resources
