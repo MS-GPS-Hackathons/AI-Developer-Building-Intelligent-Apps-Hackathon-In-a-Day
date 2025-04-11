@@ -41,12 +41,12 @@ You can find the sample product information data used in previous challenge [her
 ## Learning Resources
 
 ### Prompt flow
-- [Prompt flow in Azure AI Studio - Azure AI Studio | Microsoft Learn](https://learn.microsoft.com/en-us/azure/ai-studio/how-to/prompt-flow)
-- [How to build with prompt flow - Azure AI Studio | Microsoft Learn](https://learn.microsoft.com/en-us/azure/ai-studio/how-to/flow-develop)
-- [Deploy a flow as a managed online endpoint for real-time inference - Azure AI Studio | Microsoft Learn](https://learn.microsoft.com/en-us/azure/ai-studio/how-to/flow-deploy)
+- [Prompt flow in Azure AI Foundry](https://learn.microsoft.com/en-us/azure/ai-studio/how-to/prompt-flow)
+- [How to build with prompt flow](https://learn.microsoft.com/en-us/azure/ai-studio/how-to/flow-develop)
+- [Deploy a flow as a managed online endpoint for real-time inference](https://learn.microsoft.com/en-us/azure/ai-studio/how-to/flow-deploy)
 
 ### Evaluate models in Azure AI Studio
-- [Evaluation of generative AI applications - Azure AI Studio | Microsoft Learn](https://learn.microsoft.com/en-us/azure/ai-studio/concepts/evaluation-approach-gen-ai)
-- [How to evaluate generative AI apps with Azure AI Studio - Azure AI Studio | Microsoft Learn](https://learn.microsoft.com/en-us/azure/ai-studio/how-to/evaluate-generative-ai-app)
-- [How to view evaluation results in Azure AI Studio - Azure AI Studio | Microsoft Learn](https://learn.microsoft.com/en-us/azure/ai-studio/how-to/evaluate-flow-results)
+- [Evaluation of generative AI applications](https://learn.microsoft.com/en-us/azure/ai-studio/concepts/evaluation-approach-gen-ai)
+- [How to evaluate generative AI models and applications with Azure AI Foundry](https://learn.microsoft.com/en-us/azure/ai-studio/how-to/evaluate-generative-ai-app)
+- [How to view evaluation results in Azure AI Foundry portal](https://learn.microsoft.com/en-us/azure/ai-studio/how-to/evaluate-flow-results)
 - [Monitoring evaluation metrics descriptions and use cases](https://learn.microsoft.com/en-us/azure/machine-learning/prompt-flow/concept-model-monitoring-generative-ai-evaluation-metrics?view=azureml-api-2)
