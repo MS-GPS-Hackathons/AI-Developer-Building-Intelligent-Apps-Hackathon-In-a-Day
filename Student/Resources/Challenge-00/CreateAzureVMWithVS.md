@@ -1,6 +1,6 @@
 # Create a Windows virtual machine in the Azure portal with Visual Studio Community
 
-Azure virtual machines (VMs) can be created through the Azure portal. This method provides a browser-based user interface to create VMs and their associated resources. This quickstart shows you how to use the Azure portal to deploy a virtual machine (VM) in Azure that runs Windows Server 2022 Datacenter. To see your VM in action, you then RDP to the VM and install the IIS web server.
+Azure virtual machines (VMs) can be created through the Azure portal. This method provides a browser-based user interface to create VMs and their associated resources. This quickstart shows you how to use the Azure portal to deploy a virtual machine (VM) in Azure that runs Visual Studio 2022 Community on Windows 11. To see your VM in action, you then RDP to the VM and install the IIS web server.
 
 ## Sign in to Azure
 Sign in to the [Azure portal](https://portal.azure.com/)
@@ -13,7 +13,7 @@ Sign in to the [Azure portal](https://portal.azure.com/)
 
 3. In the Virtual machines page, select Create and then Azure virtual machine. The Create a virtual machine page opens.
 
-4. Under Instance details, enter myVM for the Virtual machine name and choose "Visual Studio 2022 Community on Windows 11 Enterprise"  for the Image. Leave the other defaults.
+4. Under Instance details, enter myWorkshopVM for the Virtual machine name and choose the image "Visual Studio 2022 Community on Windows 11 Enterprise"  and for VM size select a size with 4vcpus and 16GB of memory. Leave the other defaults.
 
 ![Instance Details.](../../../Resources/Images/instance-details.png)
 
