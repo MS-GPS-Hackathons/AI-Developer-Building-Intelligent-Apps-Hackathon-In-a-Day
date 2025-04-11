@@ -5,69 +5,65 @@
 ## Introduction
 The CTO is impressed with the results and the speed of implementation.
 
-You have been assigned by the CTO to convert natural language queries into SQL statements. The objective is to precisely translate the user's intent into SQL queries that accurately retrieve the necessary data from the database.
+You have been assigned by the CTO to build your first agent and convert natural language queries into SQL statements. The objective is to precisely translate the user's intent into SQL queries that accurately retrieve the necessary data from the database.
+
+An AI agent is a software entity designed to perform tasks autonomously or semi-autonomously by receiving input, processing information, and taking actions to achieve specific goals.
+
+The Semantic Kernel Agent Framework provides a platform within the Semantic Kernel eco-system that allow for the creation of AI agents and the ability to incorporate agentic patterns into any application based on the same patterns and features that exist in the core Semantic Kernel framework.
 
 ## Description
 In this challenge, you will practice converting natural language queries into SQL statements by using Semantic Kernel plugin. This exercise will help you understand how to translate user requests into precise SQL queries that can be executed on a database.
 
 For this challenge you should add the Database Schema to Azure Open Ai context window.  You can find the database schema [here](./Resources/Challenge-07/dbschema.txt)
 
-Semantic Kernel SDK supports a prompt templating language with some simple syntax rules. You don't need to write code or import any external libraries, just use the curly braces {{...}} to embed expressions in your prompts.
+An agent can be configured directly using a Prompt Template Configuration, providing developers with a structured and reusable way to define its behavior. This approach offers a powerful tool for standardizing and customizing agent instructions, ensuring consistency across various use cases while still maintaining dynamic adaptability.
 
-To create a semantic plugin, you need a folder containing two files: a skprompt.txt file and a config.json file. The skprompt.txt file contains the prompt to the large language model (LLM), similar to all the prompts you wrote so far. The config.json file contains the configuration details for the prompt.
+Creating an agent with template parameters provides greater flexibility by allowing its instructions to be easily customized based on different scenarios or requirements. This approach enables the agent's behavior to be tailored by substituting specific values or functions into the template, making it adaptable to a variety of tasks or contexts. By leveraging template parameters, developers can design more versatile agents that can be configured to meet diverse use cases without needing to modify the core logic, just use the curly braces {{...}} to embed expressions in your prompts.
 
-The config.json file supports the following parameters:
-- type: The type of prompt. You typically use the chat completion prompt type.
-- description: A description of what the prompt does. This description can be used by the kernel to automatically invoke the prompt.
-- input_variables: Defines the variables that are used inside of the prompt.
-- execution_settings: The settings for completion models. For OpenAI models, these settings include the max_tokens and temperature properties.
-
-To create this plugin, you would first create a 'Prompts' folder in your project, then a subfolder called 'BasicNLtoSQL.' Afterwards, you add the 'skprompt.txt' and 'config.json' files to your 'BasicNLtoSQL' folder.
-
-Example of 'skprompt.txt' file:
-
-```code
-Given the SQL schema and a query in natural language, you have to format the query into a single valid SQL statement.
-
-{{$sqlSchema}}
-
-User Input
-{{$input}}
+To proceed with developing an ChatCompletionAgent, configure your development environment with the appropriate packages.
+Add the Microsoft.SemanticKernel.Agents.Core package to your project:
+``` bash
+dotnet add package Microsoft.SemanticKernel.Agents.Core --prerelease
 ```
 
-The config.json file shall include the following configuration. Based on the  prompt(in skprompt.txt) there is a missing part in the following configuration which you may add.
-``` json
+Initialize the Kernel with a chat-completion agent. Please note that the Instructions are using sqlSchema as a parameter
+``` csharp
+// Initialize a Kernel with a chat-completion service
+IKernelBuilder builder = Kernel.CreateBuilder();
+
+builder.AddAzureOpenAIChatCompletion(/*<...configuration parameters>*/);
+
+Kernel kernel = builder.Build();
+
+ChatCompletionAgent agentNLtoSQL =
+new()
 {
-  "schema": 1,
-  "name": "BasicNLtoSQL",
-  "description": "Natural Language to SQL",
-  "type": "completion",
-  "execution_settings": {
-    "default": {
-      "max_tokens": 1024,
-      "temperature": 0,
-      "top_p": 0,
-      "presence_penalty": 0,
-      "frequency_penalty": 0
-    }
-  },
-  "input_variables": [
+    Kernel = kernel,
+    Name = "NLtoSQL",
+    Instructions = @"You are an sql query assistant, you transform natural language to sql statements. 
+                      Given the following SQL schema and a query in natural language, you have to format the query into a single valid SQL statement. 
+                      
+                      {{$sqlSchema}}",
+
+    Arguments = new KernelArguments()
     {
-      "name": "input",
-      "description": "The question to answer",
-      "required": true
+        { "sqlSchema", sqlSchema }
     }
-  ]
-}
+};
 ```
 
-You should add your plugin by importing from prompt directory like
-```csharp
-kernel.ImportPluginFromPromptDirectory("Prompts");
-```
-You should invoke the plugin with the following code
-```csharp
-var result =  kernel.InvokeStreamingAsync("Prompts", "BasicNLtoSQL", new() { { "input", userInput },{ "sqlSchema", sqlSchema } } );
+You should invoke the agent with the following code and use AgentThread to keep the conversation history
+``` csharp
+// Define agent
+ChatCompletionAgent agentNLtoSQL = ...;
+
+AgentThread thread = new ChatHistoryAgentThread();
+
+// Generate the agent response(s)
+await foreach (ChatMessageContent response in agentNLtoSQL.InvokeAsync(new ChatMessageContent(AuthorRole.User, "<user input>"), thread))
+{
+  // Process agent response(s)...
+}
 ```
 
 In the next challenge you will investigate alternative ways to optimize the solution. Discuss with your coach potential optimizations.
@@ -79,6 +75,7 @@ In the next challenge you will investigate alternative ways to optimize the solu
 - Discuss with your coach the disadvantages of current solution and propose ways to optimize this.
 
 ## Learning Resources
-- [Create an Agent from a Semantic Kernel Template (Experimental) | Microsoft Learn](https://learn.microsoft.com/en-us/semantic-kernel/frameworks/agent/agent-templates?pivots=programming-language-csharp#agent-definition-from-a-prompt-template)
+- [An Overview of the Agent Architecture](https://learn.microsoft.com/en-us/semantic-kernel/frameworks/agent/agent-architecture?pivots=programming-language-csharp)
+- [Create an Agent from a Semantic Kernel Template](https://learn.microsoft.com/en-us/semantic-kernel/frameworks/agent/agent-templates?pivots=programming-language-csharp#agent-definition-from-a-prompt-template)
+- [Exploring the Semantic Kernel ChatCompletionAgent](https://learn.microsoft.com/en-us/semantic-kernel/frameworks/agent/chat-completion-agent)
 - [PromptTemplateConfig Class (Microsoft.SemanticKernel) | Microsoft Learn](https://learn.microsoft.com/en-us/dotnet/api/microsoft.semantickernel.prompttemplateconfig?view=semantic-kernel-dotnet)
-- [Save prompts to files - Training | Microsoft Learn](https://learn.microsoft.com/en-us/training/modules/create-plugins-semantic-kernel/7-save-prompts-files)

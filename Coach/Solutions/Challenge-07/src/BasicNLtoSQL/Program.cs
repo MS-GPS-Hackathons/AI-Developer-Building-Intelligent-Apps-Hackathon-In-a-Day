@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.SemanticKernel;
+using Microsoft.SemanticKernel.Agents;
 using Microsoft.SemanticKernel.ChatCompletion;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
 using OpenTelemetry;
@@ -33,21 +34,27 @@ namespace AIDevHackathon.ConsoleApp.BasicNLtoSQL
                 // Build the kernel
                 var kernel = builder.Build();
 
-                // Import the prompts plugin from the prompt directory
-                kernel.ImportPluginFromPromptDirectory("Prompts");
-
-                // Retrieve the chat completion service from the kernel
-                var chatCompletionService = kernel.GetRequiredService<IChatCompletionService>();
-
-                // Create the chat history
-                var systemPrompt = @"
-                        You are an sql query assistant, you transform natural language to sql statements.
-                        ";
-
-                var chatMessages = new ChatHistory(systemPrompt);
-
                 //Load the database schema
-                var sqlSchema = await File.ReadAllTextAsync("D:\\Projects\\AI-Developer-Building-Intelligent-Apps-Hackathon\\Coach\\Solutions\\Challenge-07\\src\\BasicNLtoSQL\\Data");
+                var sqlSchema = await File.ReadAllTextAsync("Data\\dbschema.txt");
+
+
+                ChatCompletionAgent agentNLtoSQL =
+                new()
+                {
+                    Kernel = kernel,
+                    Name = "NLtoSQL",
+                    Instructions = @"You are an sql query assistant, you transform natural language to sql statements. 
+                                     Given the following SQL schema and a query in natural language, you have to format the query into a single valid SQL statement. 
+                                     
+                                     {{$sqlSchema}}",
+
+                    Arguments = new KernelArguments()
+                    {
+                        { "sqlSchema", sqlSchema }
+                    }
+                };
+
+                AgentThread thread = new ChatHistoryAgentThread();
 
                 // Start the conversation
                 while (true)
@@ -58,23 +65,13 @@ namespace AIDevHackathon.ConsoleApp.BasicNLtoSQL
                         System.Console.Write("User > ");
                         var userInput = Console.ReadLine();
 
-                        // Add the user message to the chat history
-                        chatMessages.AddUserMessage(userInput);
-
-                        // Invoke the chat completion service with prompt function BasicNLToSQL to get the response from the agent
-                        var result =  kernel.InvokeStreamingAsync("Prompts", "BasicNLtoSQL", new() { { "input", userInput },{ "sqlSchema", sqlSchema } } );
-                                      
-                        // Stream the results
-                        var fullMessage = "";
-                        await foreach (var content in result)
+                        // Generate the agent response(s)
+                        await foreach (ChatMessageContent response in agentNLtoSQL.InvokeAsync(new ChatMessageContent(AuthorRole.User, userInput), thread))
                         {
-                            System.Console.Write(content);
-                            fullMessage += content;
-                        }
+                            System.Console.Write(response.Content);
+                        }                                      
                         System.Console.WriteLine();
 
-                        // Add the message from the agent to the chat history
-                        chatMessages.AddAssistantMessage(fullMessage);
                     }
                     catch (Exception ex)
                     {
