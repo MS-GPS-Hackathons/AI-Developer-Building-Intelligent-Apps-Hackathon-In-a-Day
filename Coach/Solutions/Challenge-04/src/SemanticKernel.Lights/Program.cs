@@ -44,6 +44,9 @@ var chatCompletionService = kernel.Services.GetRequiredService<IChatCompletionSe
 // Add the lights plugin to the kernel
 kernel.Plugins.AddFromType<LightsPlugin>("Lights");
 
+// Add time plugin
+kernel.Plugins.AddFromType<TimePlugin>("Time");
+
 //Add Product Info Plugin
 var searchClient = new SearchIndexClient(new Uri(searchEndpoint), new Azure.AzureKeyCredential(searchKey));
 var textEmbeddingService = kernel.Services.GetRequiredService<ITextEmbeddingGenerationService>();
@@ -60,7 +63,7 @@ OpenAIPromptExecutionSettings openAIPromptExecutionSettings = new()
 
 // Create chat history
 var history = new ChatHistory();
-history.AddSystemMessage("You are an AI assistant managing the lights and product information.");
+history.AddSystemMessage("You are an AI assistant managing the lights, time and product information.");
 
 while (true)
 {

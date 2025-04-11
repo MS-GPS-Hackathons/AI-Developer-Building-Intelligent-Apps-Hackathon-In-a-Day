@@ -10,6 +10,8 @@ Semantic Kernel is a lightweight, open-source development kit that lets you easi
 
 It combines prompts with existing APIs to perform actions. By describing your existing code to AI models, they’ll be called to address requests. When a request is made the model calls a function, and Semantic Kernel is the middleware translating the model's request to a function call and passes the results back to the model.
 
+By adding your existing code as a plugin, you’ll maximize your investment by flexibly integrating AI services through a set of out-of-the-box connectors. Semantic Kernel uses OpenAPI specifications (like Microsoft 365 Copilot) so you can share any extensions with other pro or low-code developers in your company.
+
 ![image](../Resources/Images/functioncalling.png)
 
 ## Description
