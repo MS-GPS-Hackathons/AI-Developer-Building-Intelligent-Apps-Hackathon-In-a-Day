@@ -1,10 +1,10 @@
-# Challenge 05 - Observability in Semantic Kernel
+# (Optional) Challenge 5 - Observability in Semantic Kernel
 
  [< Previous Challenge](./Challenge-04.md) - **[Home](../README.md)** - [Next Challenge >](./Challenge-06.md)
  
 ## Introduction
 
-After implementing your first Semantic Kernel intelligent app, it's time to add observability into your application.
+After implementing your first intelligent app, it's time to add observability into your application.
 
 When you build AI solutions, you want to be able to observe the behavior of your services. Observability is the ability to monitor and analyze the internal state of components within a distributed system. It is a key requirement for building enterprise-ready AI solutions.
 

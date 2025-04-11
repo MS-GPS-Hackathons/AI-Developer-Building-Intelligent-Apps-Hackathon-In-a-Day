@@ -1,14 +1,15 @@
-# Developer Track Hackathon - Building Intelligent Apps
+# Azure AI Developer Hackathon in a day - Building Intelligent Apps
 
 This hackathon will provide a deep dive experience targeted for developers by integrating AI solutions into applications. Hackathon is a collaborative learning experience, designed as a set of challenges to practice your technical skills. By participating in this hackathon, you will be able to understand the capabilities of integrating AI services into applications.
 
-This workshop requires two full days to finish depending on the attendees' skill level. It is a collaborative activity where attendees form teams of 3-5 people to go through every workshop.
+This workshop is structured as a half to full day event, totaling approximately 6 hours to complete all challenges. The actual time required depends on the attendees' skill levels.
+
+The hackathon is a collaborative activity where attendees form teams of 3-5 people to go through each workshop.
   
 ## Learning Objectives
 Upon completing the workshop, participants will be able to:
 - Understand the fundamentals of Retrieval Augmented Generation (RAG) and its implementation using Azure OpenAI.
 - Integrate Azure AI Search with RAG to enhance AI applications with contextually relevant data.
-- Design and build a copilot system utilizing prompt flow in Azure AI Studio for efficient user interaction.
 - Develop intelligent applications using Azure Open AI SDK.
 - Develop intelligent applications using Semantic Kernel in either C# or Python, incorporating AI prompts seamlessly.
 - Develop a Natural Language to SQL intelligent application.
@@ -43,43 +44,23 @@ The intended audience are individuals with coding skills.
 
 - Dive into the world of RAG and learn how to enhance your AI applications by integrating Azure OpenAI’s capabilities. This session will guide you through the process of implementing RAG with Azure AI Search, enabling your applications to leverage external data sources for grounded and contextually relevant responses.
 
-### Challenge 2: **[Use prompt flow to query on own data with Search AI.](Student/Challenge-02.md)**
-
-- Discover how to create a responsive QnA system using prompt flow, allowing for intuitive and efficient user interactions with your AI solutions.
-
-### Challenge 3: **[Start coding with Azure OpenAI SDK and Inference SDK.](Student/Challenge-03.md)**
+### Challenge 2: **[Start coding with Azure OpenAI SDK and Inference SDK.](Student/Challenge-02.md)**
 
 - Use Azure OpenAI or Inference SDK to start coding your intelligent apps. The Azure AI Foundry SDK is a comprehensive toolchain designed to simplify the development of AI applications on Azure. The SDKs are a set of client libraries that allows developers to interact with Azure AI Services.
 
-### Challenge 4: **[Use Semantic Kernel as an Orchestrator to create a basic intelligent app.](Student/Challenge-04.md)**
+### Challenge 3: **[Use Semantic Kernel as an Orchestrator to create a basic intelligent app.](Student/Challenge-03.md)**
 
 - Unlock the potential of Semantic Kernel in developing intelligent applications. Whether you prefer C# or Python, this session will provide you with the knowledge to incorporate Semantic Kernel into your applications, facilitating seamless integration of AI prompts with conventional programming languages for smarter, more responsive applications.
 
-### Challenge 5: **[Observability in Semantic Kernel](Student/Challenge-05.md)**
+### (Optional) Challenge 4: **[Advanced Natural Language to SQL with Semantic Kernel and RAG](Student/Challenge-04.md)**
+
+- Practice how to convert natural language queries into SQL statements by using Semantic Kernel. This challenge will help you understand how to translate user requests into precise SQL queries that can be executed on the database
+
+### (Optional) Challenge 5: **[Observability in Semantic Kernel](Student/Challenge-05.md)**
 
 - When you build AI solutions, you want to be able to observe the behavior of your services. Observability is the ability to monitor and analyze the internal state of components within a distributed system. It is a key requirement for building enterprise-ready AI solutions.
 
-### Challenge 6: **[Use Cosmos DB as a Vector DB.](Student/Challenge-06.md)**
-
-- Use Cosmos DB as a Vector Database for grounding your own data. A vector database stores and manages vector embeddings for records, which are used in similarity search and Retrieval-Augmented Generation (RAG). CosmosDB allows you to store vectors directly in documents alongside traditional schema-free data, enabling efficient indexing and searching. This colocation of data and vectors simplifies data management, AI application architectures, and enhances the efficiency of vector-based operations.
-
-### (Optional) Challenge 7: **[Basic Natural Language to SQL with Semantic Kernel](Student/Challenge-07.md)**
-
-- Practice how to convert natural language queries into SQL statements by using Semantic Kernel .This challenge will help you understand how to translate user requests into precise SQL queries that can be executed on a database by passing the sql schema into LLM context window.
-
-### Challenge 8: **[Advanced Natural Language to SQL with Semantic Kernel and RAG](Student/Challenge-08.md)**
-
-- After completing the basic scenario of converting natural language to SQL queries, the next step is to optimise the solution by implementing the RAG pattern. This involves not passing the entire SQL schema in the LLM context. Instead, you will use the Semantic Kernel's ability to decide which table schemas to include. Additionally, you will enable the Semantic Kernel to execute SQL queries and display the results to the user.
-
-### Challenge 9: **[Identify real world usage of intelligent applications](Student/Challenge-09.md)**
-
-- This challenge encourages creative thinking about AI applications in various industries and their impact on solving real-world problems.
-
-### Challenge 10: **[Create multi-agent system strategy](Student/Challenge-10.md)**
-
-- This challenge focuses on the design and implementation of a multi-agent system. Participants will learn how to create a system where multiple agents can work together to solve complex problems, leveraging the capabilities of Azure OpenAI and Semantic Kernel.
-
-### (Optional) Challenge 11: **[Deploy your intelligent app as a web chatbot](Student/Challenge-11.md)**
+### (Optional) Challenge 6: **[Deploy your intelligent app as a web chatbot](Student/Challenge-06.md)**
 
 - Are you feeling too comfortable and eager to do more? This additional challenge will push your skills further by deploying your NL to SQL application to Azure as a web chatbot.
 
@@ -88,7 +69,6 @@ The intended audience are individuals with coding skills.
 - [Deploy an Enterprise Chat web app in the Azure AI Studio playground - Azure AI Studio | Microsoft Learn](https://learn.microsoft.com/en-us/azure/ai-studio/tutorials/deploy-chat-web-app)
 - [Implement Retrieval Augmented Generation (RAG) with Azure OpenAI](https://microsoftlearning.github.io/mslearn-openai/Instructions/Exercises/06-use-own-data.html)
 - [Use your own data with Azure OpenAI Service - Azure OpenAI | Microsoft Learn](https://learn.microsoft.com/en-us/azure/ai-services/openai/use-your-data-quickstart?tabs=command-line%2Cpython-new&pivots=programming-language-csharp)
-- [Build and deploy a question and answer copilot with prompt flow in Azure AI Studio](https://learn.microsoft.com/en-us/azure/ai-studio/tutorials/deploy-copilot-ai-studio)
 - [Getting Started with Semantic Kernel](https://learn.microsoft.com/en-us/semantic-kernel/get-started/quick-start-guide)
 - [Develop AI agents using Azure OpenAI and the Semantic Kernel SDK - Training | Microsoft Learn](https://learn.microsoft.com/en-us/training/paths/develop-ai-agents-azure-open-ai-semantic-kernel-sdk/)
 - [MSLearn - Develop AI Agents with Azure OpenAI and Semantic Kernel-SDK](https://github.com/MicrosoftLearning/MSLearn-Develop-AI-Agents-with-Azure-OpenAI-and-Semantic-Kernel-SDK/tree/main)

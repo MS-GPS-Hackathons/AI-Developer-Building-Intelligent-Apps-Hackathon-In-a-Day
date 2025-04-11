@@ -1,1 +1,0 @@
-﻿public record OuterTerminationResult(bool isApproved, string reason);

@@ -1,4 +1,4 @@
-# Challenge 00 - Setup and prepare Evironment
+# Challenge 0 - Setup and prepare Evironment
 
 **[Home](../README.md)** - [Next Challenge >](./Challenge-01.md)
 
@@ -10,6 +10,9 @@
 - Latest version of Azure CLI
 - Latest version of Visual Studio or Visual Studio Code
 - .NET 8.0 SDK or later version
+
+> [!NOTE]
+> If you do not have access to a development workstation, you may create a Virtual Machine in your Azure subscription using the "Visual Studio Community on Windows" image. This VM can serve as your workstation to complete the hackathon challenges. Please follow the instructions provided [here](Resources/Challenge-00/CreateAzureVMWithVS.md) to create the Azure VM with Visual Studio.
 
 ## Introduction
 

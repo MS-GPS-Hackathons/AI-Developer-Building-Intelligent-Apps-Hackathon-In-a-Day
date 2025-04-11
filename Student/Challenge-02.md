@@ -1,52 +1,104 @@
-# Challenge 02 - Use prompt flow to query on own data with Search AI.
+# Challenge 2 - Start coding with Azure OpenAI SDK and Inference SDK.
 
  [< Previous Challenge](./Challenge-01.md) - **[Home](../README.md)** - [Next Challenge >](./Challenge-03.md)
- 
-## Introduction
 
-Once you've finished the initial setup in the chat playground, it's time to explore deploying a real-time endpoint. You discover that using Prompt flow can help you accomplish this.
+## Introduction
+After completing the previous challenge, it's time to start investigating, how you can write code to utilize the AI services.
+
+The Azure OpenAI SDK is a set of client libraries that allows developers to interact with Azure Open AI models. This service provides access to powerful Open AI foundational models, with the security and enterprise capabilities of Azure.
+
+Additionally, the Azure AI model inference SDK provides another option for interacting with AI models. This SDK simplifies the process of integrating AI capabilities into applications by providing a unified interface for interacting with different models.
+
+### Two Options Available:
+1. **Azure OpenAI SDK**: This SDK is designed for interacting with OpenAI models hosted on Azure, providing features like chat completions, embeddings, and more.
+2. **Azure AI Model Inference SDK**: This SDK is focused on running inferences using AI models, providing a streamlined way to get predictions and results from models.It offers access to powerful models from leading providers like OpenAI, Microsoft, Meta, and more.
 
 ## Description
+Now you’ll dive into .NET Core development by creating a simple console application and use your own data with Azure OpenAI models created in previous challenge.
 
-You figure out that Prompt flow is a tool that simplifies the entire development cycle of AI applications using Large Language Models (LLMs). It streamlines prototyping, experimenting, iterating, and deploying your AI applications.
+You can also use the Azure Open AI SDK of another programming language of your preference.
 
-By utilizing prompt flow, you're able to:
-- Create executable flows that link LLMs, prompts, and Python tools through a visualized graph.
-- Debug, share, and iterate your flows with ease through team collaboration.
-- Create prompt variants and evaluate their performance through large-scale testing.
-- Deploy a real-time endpoint that unlocks the full power of LLMs for your application.
+The following example demonstrates the use of the Azure Open AI SDK. Alternatively, you can use the Inference SDK.
 
-You will use generative AI and prompt flow UI to build, configure, and deploy a copilot.
+In a console window use the dotnet new command to create a new console app.
 
-The copilot should answer questions about your products and services. For example, the copilot can answer questions such as "How much do the TrailWalker hiking shoes cost?"
+```bash
+dotnet new console -n azure-openai-sdk-hackathon
+```
 
-You should complete the following steps
-- Clone a chat prompt flow to ground your data
-- Customize prompt flow and ground your data created in previous challenge.
-- Deploy the flow for consumption.
-- (Optional) Evaluate the flow using a question and answer evaluation dataset.
+Install the OpenAI .NET client library with:
+
+```bash
+dotnet add package Azure.AI.OpenAI
+```
+
+Add using statements:
+
+```bash
+using OpenAI.Chat;
+using Azure.AI.OpenAI;
+```
+
+Add your environmental variables
+```csharp
+string endpoint = "<Add AOAI GPT Enpoint>";
+string deploymentName = "<Add AOAI GPT Key>";
+string openAiApiKey = "<Add AOAI GPT Deployment name>";
+
+string searchEndpoint = "<Add Azure Search Enpoint>";
+string searchIndex = "<Add Azure Search Key>";
+string searchApiKey = "<Add Azure Search Index for eCommerce products>";
+```
+
+Create client with an API key.
 
 > [!NOTE]
-> Clone the chat prompt flow "Multi-Round Q&A on Your Data" from the samples available
+> While this is not as secure as Microsoft Entra-based authentication, it's possible to authenticate using a client subscription key. Avoid authenticating with api keys on production environments.
 
-You can find the sample product information data used in previous challenge [here](./Resources/Challenge-01/Data/product-info)
+```csharp
+AzureOpenAIClient azureClient = new(
+    new Uri(endpoint),
+    new ApiKeyCredential(openAiApiKey));
+ChatClient chatClient = azureClient.GetChatClient(deploymentName);
+```
+
+Use your own data with Azure OpenAI
+
+```csharp
+#pragma warning disable AOAI001
+
+//Add chat completion options with data source 
+ChatCompletionOptions options = new ChatCompletionOptions();
+options.AddDataSource(new AzureSearchChatDataSource()
+{
+    Endpoint = new Uri(searchEndpoint),
+    IndexName = searchIndex,
+    Authentication = DataSourceAuthentication.FromApiKey(searchApiKey),
+});
+
+//Add system message and user question
+List<ChatMessage> messages = new List<ChatMessage>();
+messages.Add(ChatMessage.CreateSystemMessage("You are an AI assistant that helps people find product information."));
+messages.Add(ChatMessage.CreateUserMessage("<Type your question here.>"));
+
+ChatCompletion completion = chatClient.CompleteChat(messages, options);
+```
+
+Use the above code as an example and do all necessary changes to meet the success criteria.
+You should make your application acting like a chat bot by adding conversation history as context for the subsequent calls.
 
 ## Success Criteria
-- Demonstrate that you can chat within prompt flow with product info. Get answers to questions such as "Give me the description of the TrailWalker hiking shoes"
-- Demonstrate that you deploy the flow and you can use the REST endpoint or the SDK to use the deployed flow.
-- Describe the prompt flow steps to your coach.
-- (Optional) Evaluate the flow using a question and answer evaluation dataset (here is the [eval_dataset](./Resources/Challenge-02/evaluation_dataset.jsonl))
-- (Optional) Show the evaluation status and results.
 
+- Demonstrate that the user can ask questions on your own data within the application.
+- Demonstrate that you set the behavior of the bot as a product information application.
+- Demonstrate that you use the conversation history as context for the subsequent calls.
+- (Optional) Demonstrate that you can stream the response chat messages.
+- Explain to your coach the key differences between Azure OpenAI SDK and Inference SDK.
+- Discuss with your coach alternative ways authenticating with Azure AI services.
+  
 ## Learning Resources
-
-### Prompt flow
-- [Prompt flow in Azure AI Foundry](https://learn.microsoft.com/en-us/azure/ai-studio/how-to/prompt-flow)
-- [How to build with prompt flow](https://learn.microsoft.com/en-us/azure/ai-studio/how-to/flow-develop)
-- [Deploy a flow as a managed online endpoint for real-time inference](https://learn.microsoft.com/en-us/azure/ai-studio/how-to/flow-deploy)
-
-### Evaluate models in Azure AI Studio
-- [Evaluation of generative AI applications](https://learn.microsoft.com/en-us/azure/ai-studio/concepts/evaluation-approach-gen-ai)
-- [How to evaluate generative AI models and applications with Azure AI Foundry](https://learn.microsoft.com/en-us/azure/ai-studio/how-to/evaluate-generative-ai-app)
-- [How to view evaluation results in Azure AI Foundry portal](https://learn.microsoft.com/en-us/azure/ai-studio/how-to/evaluate-flow-results)
-- [Monitoring evaluation metrics descriptions and use cases](https://learn.microsoft.com/en-us/azure/machine-learning/prompt-flow/concept-model-monitoring-generative-ai-evaluation-metrics?view=azureml-api-2)
+- [The Azure AI Foundry SDK](https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/sdk-overview?tabs=sync&pivots=programming-language-csharp#azure-ai-model-inference-service)
+- [Azure OpenAI client library for .NET - Azure for .NET Developers | Microsoft Learn](https://learn.microsoft.com/en-us/dotnet/api/overview/azure/ai.openai-readme?view=azure-dotnet)
+- [Azure OpenAI client library for .NET - Use your own data | Microsoft Learn](https://learn.microsoft.com/en-us/dotnet/api/overview/azure/ai.openai-readme?view=azure-dotnet-preview#use-your-own-data-with-azure-openai)
+- [Authenticate requests to Azure AI services](https://learn.microsoft.com/en-us/azure/ai-services/authentication)
+- [Azure AI services authentication and authorization using .NET](https://learn.microsoft.com/en-us/dotnet/ai/azure-ai-services-authentication)
