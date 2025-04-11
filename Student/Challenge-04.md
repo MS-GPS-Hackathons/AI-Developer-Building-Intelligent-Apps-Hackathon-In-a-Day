@@ -14,7 +14,7 @@ In this challenge, you will practice converting natural language queries into SQ
 
 You decided to use RAG pattern for the implementation, avoiding the need to pass the entire SQL schema into the LLM context. You will utilize the Semantic Kernel's ability to determine which table schemas to include in the LLM context. Additionally, you will enable the Semantic Kernel to execute SQL queries and display the results to the user.
 
-You will be given a sample database (Adventure Works) and you should issue the SQL statements based on the database schema. You can find the scripts to deploy the database in Azure [here](./Resources/Challenge-08/deploy-sql.azcli)
+You will be given a sample database (Adventure Works) and you should issue the SQL statements based on the database schema. You can find the scripts to deploy the database in Azure [here](./Resources/Challenge-04/deploy-sql.azcli)
 
 Create a plugin with the following functions. Please provide the semantic descriptions of the functions and parameters so the AI agent can understand them. Once you describe the functions and parameters, you enable Semantic Kernel Auto Invocation to make the right decisions and call the functions automatically based on the semantic meaning of your intent.
 - **Get database Info** -> Get the Database description

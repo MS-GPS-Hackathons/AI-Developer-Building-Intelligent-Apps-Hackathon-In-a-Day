@@ -12,7 +12,7 @@ Upon completing the workshop, participants will be able to:
 - Integrate Azure AI Search with RAG to enhance AI applications with contextually relevant data.
 - Develop intelligent applications using Azure Open AI SDK.
 - Develop intelligent applications using Semantic Kernel in either C# or Python, incorporating AI prompts seamlessly.
-- Develop a Natural Language to SQL intelligent application.
+- Develop a Natural Language to SQL agent.
 - Apply the learned concepts to create innovative solutions that address real-world challenges across industries.
   
 ## Prerequisites
@@ -50,11 +50,11 @@ The intended audience are individuals with coding skills.
 
 ### Challenge 3: **[Use Semantic Kernel as an Orchestrator to create a basic intelligent app.](Student/Challenge-03.md)**
 
-- Unlock the potential of Semantic Kernel in developing intelligent applications. Whether you prefer C# or Python, this session will provide you with the knowledge to incorporate Semantic Kernel into your applications, facilitating seamless integration of AI prompts with conventional programming languages for smarter, more responsive applications.
+- Unlock the potential of Semantic Kernel in developing intelligent applications. Semantic Kernel is a lightweight, open-source development kit that lets you easily build AI agents and integrate the latest AI models into your C#, Python, or Java codebase. It serves as an efficient middleware that enables rapid delivery of enterprise-grade solutions. It achieves this by allowing you to define plugins that can be chained together in just a few lines of code.
 
 ### (Optional) Challenge 4: **[Advanced Natural Language to SQL with Semantic Kernel and RAG](Student/Challenge-04.md)**
 
-- Practice how to convert natural language queries into SQL statements by using Semantic Kernel. This challenge will help you understand how to translate user requests into precise SQL queries that can be executed on the database
+- Practice how to convert natural language queries into SQL statements by using Semantic Kernel. This challenge will help you understand how to translate user requests into precise SQL queries that can be executed on the database.
 
 ### (Optional) Challenge 5: **[Observability in Semantic Kernel](Student/Challenge-05.md)**
 

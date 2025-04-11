@@ -14,7 +14,7 @@ It combines prompts with existing APIs to perform actions. By describing your ex
 
 ## Description
 
-This challenge will guide you through the process of developing your first intelligent app with Semantic Kernel.
+This challenge will guide you through the process of developing your first intelligent app agent with Semantic Kernel.
 
 In just a few steps, you can build your first AI agent with Semantic Kernel in either Python, .NET, or Java.
 
@@ -274,7 +274,7 @@ kernel.Plugins.AddFromObject(productInfoPlugin);
 - [Introduction to Semantic Kernel | Microsoft Learn](https://learn.microsoft.com/en-us/semantic-kernel/overview/)
 - [Plugins in Semantic Kernel | Microsoft Learn](https://learn.microsoft.com/en-us/semantic-kernel/concepts/plugins/?pivots=programming-language-csharp)
 - [What are Planners in Semantic Kernel | Microsoft Learn](https://learn.microsoft.com/en-us/semantic-kernel/concepts/planning?pivots=programming-language-csharp)
-- [In-depth Semantic Kernel Demos | Microsoft Learn](https://learn.microsoft.com/en-us/semantic-kernel/get-started/detailed-samples?pivots=programming-language-csharp)
+- [Deep dive into Semantic Kernel](https://learn.microsoft.com/en-us/semantic-kernel/get-started/detailed-samples?pivots=programming-language-csharp)
 - [Semantic Kernel GitHub](https://github.com/microsoft/semantic-kernel)
-- [Retrieve data from plugins for RAG | Microsoft Learn](https://learn.microsoft.com/en-us/semantic-kernel/concepts/plugins/using-data-retrieval-functions-for-rag)
+- [Using plugins for Retrieval Augmented Generation (RAG)](https://learn.microsoft.com/en-us/semantic-kernel/concepts/plugins/using-data-retrieval-functions-for-rag)
 - [GitHub samples, Azure AI Search](https://github.com/microsoft/semantic-kernel/blob/main/dotnet/samples/Concepts/Search/MyAzureAISearchPlugin.cs)

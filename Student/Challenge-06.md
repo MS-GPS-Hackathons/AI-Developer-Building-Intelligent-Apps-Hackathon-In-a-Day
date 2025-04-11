@@ -24,7 +24,7 @@ The goal is to make your app accessible as a web chatbot, where users can intera
 
 ## Learning Resources
 - [Develop AI apps using Azure AI services](https://learn.microsoft.com/en-us/azure/developer/ai/intelligent-app-templates?pivots=dotnet)
--[How to get started with an AI template - Azure AI Studio | Microsoft Learn](https://learn.microsoft.com/en-us/azure/ai-studio/how-to/develop/ai-template-get-started?tabs=csharp)
-- [microsoft/sample-app-aoai-chatGPT: Sample code for a simple web chat experience through Azure OpenAI, including Azure OpenAI On Your Data.](https://github.com/microsoft/sample-app-aoai-chatGPT)
-- [Azure-Samples/openai-chat-app-quickstart: A simple chat application that uses managed identity for Azure OpenAI access. Designed for deployment on Azure Container Apps with the Azure Developer CLI.](https://github.com/Azure-Samples/openai-chat-app-quickstart)
--[microsoft/chat-copilot](https://github.com/microsoft/chat-copilot)
+- [Get started with an AI template](https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/ai-template-get-started)
+- [Sample Chat App with AOAI](https://github.com/microsoft/sample-app-aoai-chatGPT)
+- [Chat Application using Azure OpenAI (Python)](https://github.com/Azure-Samples/openai-chat-app-quickstart)
+- [Chat Copilot Sample Application](https://github.com/microsoft/chat-copilot)
