@@ -1,4 +1,4 @@
-# Challenge 2 - Start coding with Azure OpenAI SDK and Inference SDK.
+# Challenge 2 - Start coding with Azure OpenAI SDK.
 
  [< Previous Challenge](./Challenge-01.md) - **[Home](../README.md)** - [Next Challenge >](./Challenge-03.md)
 
